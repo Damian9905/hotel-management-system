@@ -20,6 +20,8 @@ public class RoomType {
     private Long id;
     private String roomType;
     private String description;
+    private Integer numberOfPeople;
+    private Double price;
 
     @OneToMany (targetEntity = Room.class, cascade = CascadeType.ALL, mappedBy = "roomType", fetch = FetchType.LAZY)
     @JsonIgnore
