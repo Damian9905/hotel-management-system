@@ -1,7 +1,6 @@
 package pl.hotel.tobiczyk.domain.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -9,6 +8,9 @@ import javax.persistence.*;
 @Table(name = "rooms")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

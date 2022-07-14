@@ -6,11 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.hotel.tobiczyk.domain.dto.RoomDto;
 import pl.hotel.tobiczyk.domain.model.Room;
 import pl.hotel.tobiczyk.domain.model.RoomType;
 import pl.hotel.tobiczyk.repository.RoomTypeRepository;
 import pl.hotel.tobiczyk.service.RoomService;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @Controller
@@ -38,9 +41,14 @@ class RoomController {
         return ResponseEntity.ok(roomTypeRepository.findAll());
     }
 
-
-
-
+    @PostMapping(path = "/add")
+    @ResponseBody
+    public ResponseEntity<Room> addRoom(@RequestBody @Valid RoomDto toCreate) {
+        System.out.println("HERE!");
+        Room created = roomService.createNewRoom(toCreate);
+        URI location = URI.create(String.format("/rooms/%s", created.getId()));
+        return ResponseEntity.created(location).body(created);
+    }
 
     //TEMPLATES
 
