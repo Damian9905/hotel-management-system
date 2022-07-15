@@ -15,12 +15,12 @@
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Pokoje Gościnne</a>
+        <a class="navbar-brand" href="/">Pokoje Gościnne</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="http://localhost:8080/login/oauth2/code/okta">Zaloguj się</a></li>
-                <li class="nav-item"><a class="nav-link" href="/rooms">Oferta</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/panel/admin">Admin</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/rooms">Oferta</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Szukaj Terminu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Kontakt</a></li>
             </ul>
@@ -38,7 +38,8 @@
             <a class="btn btn-primary" href="#!">Wyszukaj termin już dziś!</a>
         </div>
     </div>
-    <h1>Nasza oferta</h1>
+    <h1 class="fw-light text-center text-lg-start mt-4 mb-0">Nasza Oferta</h1>
+    </br>
     <!-- Content Row-->
     <div class="row gx-4 gx-lg-5">
         <div>
@@ -47,20 +48,101 @@
                 <thead>
                 <tr>
                     <th> Nazwa pokoju </th>
+                    <th> Liczba miejsc</th>
                     <th> Opis pokoju </th>
+                    <th> Cena za pokój</th>
                     <th> Galeria </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="room : ${rooms}">
                     <td th:text="|${room.getDescription()}|"></td>
+                    <td th:text="|${room.getRoomType().getNumberOfPeople()}|"></td>
                     <td th:text="|${room.getRoomType().getDescription()}|"></td>
+                    <td th:text="|${room.getRoomType().getPrice()}| + ' zł'"></td>>
                     <td> <a href="#">Zobacz galerię</a></td>
                 </tr>
                 </tbody>
             </table>
-
             </div>
+        </div>
+    </br>
+
+    <div class="container">
+
+        <h1 id="gallery" class="fw-light text-center text-lg-start mt-4 mb-0">Galeria</h1>
+
+        <hr class="mt-2 mb-5">
+
+        <div class="row text-center text-lg-start">
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+                </a>
+            </div>
+        </div>
+
+    </div>
+        <br/>
+        <h1 id="attractions"> Atrakcje w pobliżu</h1>
+        <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.
         </div>
     </div>
 </div>

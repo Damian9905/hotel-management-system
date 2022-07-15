@@ -10,7 +10,6 @@ import pl.hotel.tobiczyk.domain.model.Room;
 import pl.hotel.tobiczyk.domain.model.RoomType;
 import pl.hotel.tobiczyk.repository.RoomTypeRepository;
 import pl.hotel.tobiczyk.service.RoomService;
-
 import java.util.List;
 
 @Controller
@@ -37,10 +36,6 @@ class RoomController {
     public ResponseEntity<List<RoomType>> showTypes() {
         return ResponseEntity.ok(roomTypeRepository.findAll());
     }
-
-
-
-
 
     //TEMPLATES
 
