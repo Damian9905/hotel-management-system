@@ -19,7 +19,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Admin</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/panel/admin">Admin</a></li>
                 <li class="nav-item"><a class="nav-link" href="/rooms">Oferta</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Szukaj Terminu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Kontakt</a></li>
@@ -44,16 +44,16 @@
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
         <div class="position-sticky">
             <div class="list-group list-group-flush mx-3 mt-4">
-                <a href="#" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+                <a href="/panel/admin" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
                     <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Panel</span>
                 </a>
-                <a href="/panel/admin/addRoom" class="list-group-item list-group-item-action py-2 ripple">
+                <a href="/panel/admin/addRoom" class="list-group-item list-group-item-action py-2 ripple ">
                     <i class="fas fa-chart-area fa-fw me-3"></i><span>Dodaj Pokój</span>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action py-2 ripple"
                 ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Dodaj zdjęcia</span></a
                 >
-                <a href="/panel/admin/changeRoomPrice" class="list-group-item list-group-item-action py-2 ripple"
+                <a href="/panel/admin/changeRoomPrice" class="list-group-item list-group-item-action py-2 ripple active"
                 ><i class="fas fa-lock fa-fw me-3"></i><span>Zmień ceny</span></a
                 >
                 <a href="#" class="list-group-item list-group-item-action py-2 ripple">
@@ -78,6 +78,25 @@
 <div class="container px-4 px-lg-5">
     <!-- Heading Row-->
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <form action="#" th:action="@{/panel/admin/changeRoomPrice}" th:object="${changePriceDto}" method="post">
+            <div class="form-group">
+                <label for="roomTypeId">Typ pokoju</label>
+                <select th:field="*{id}" class="form-control" id="roomTypeId">
+                    <option th:each="type: ${roomTypes}" th:value="${type.getId()}" th:text="${type.getDescription()}"/>
+                </select>
+            </div></br>
+            <div class="form-group">
+                <label for="roomPrice">Cena</label>
+                <input type="number" th:field="*{price}" class="form-control" id="roomPrice">
+            </div></br>
+            <div th:if="${errors} != null">
+                <ul>
+                    <b><li th:each="err : ${errors}" th:text="${err.getDefaultMessage()}" style="color:red;" /></b>
+                </ul>
+            </div></br>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
+            <input type="reset" class="btn btn-primary"/>
+        </form>
     </div>
 </div>
 <!-- Footer-->

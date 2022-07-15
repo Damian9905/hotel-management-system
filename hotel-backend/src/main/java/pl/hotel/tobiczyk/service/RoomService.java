@@ -1,13 +1,16 @@
 package pl.hotel.tobiczyk.service;
 
 import org.springframework.stereotype.Service;
+import pl.hotel.tobiczyk.domain.dto.ChangePriceDto;
 import pl.hotel.tobiczyk.domain.dto.RoomDto;
 import pl.hotel.tobiczyk.domain.model.Room;
+import pl.hotel.tobiczyk.domain.model.RoomType;
 import pl.hotel.tobiczyk.repository.RoomRepository;
 import pl.hotel.tobiczyk.repository.RoomTypeRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class RoomService {
@@ -30,5 +33,11 @@ public class RoomService {
                 .roomType(roomTypeRepository.findById(toCreate.getRoomTypeId()).orElseThrow(NoSuchElementException::new))
                 .build();
         return roomRepository.save(entity);
+    }
+
+    public void updateRoomTypePrice(final ChangePriceDto roomToChange) {
+        var room = roomTypeRepository.findById(roomToChange.getId()).orElseThrow(NoSuchElementException::new);
+        room.setPrice(Optional.ofNullable(roomToChange.getPrice().doubleValue()).orElse(room.getPrice()));
+        roomTypeRepository.save(room);
     }
 }
