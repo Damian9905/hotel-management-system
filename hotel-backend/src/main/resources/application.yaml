@@ -19,3 +19,15 @@ okta:
     client-id: 0oa5asfkz7HW7y1z55d7
     redirect-uri: /login/oauth2/code/okta
     client-secret: kjycVIA2kyQMUosISaEWNGb4CmbZM_WyPm2M700P
+
+aws:
+  access:
+    key:
+      id: AKIASLSRCJ4LILNP2LQB
+  secret:
+    access:
+      key: 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
+  s3:
+    region: eu-central-1
+    bucket:
+      name: hotel-management-s3-bucket
