@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.hotel.tobiczyk.domain.model.Photo;
 import pl.hotel.tobiczyk.repository.PhotoRepository;
-import pl.hotel.tobiczyk.repository.RoomTypeRepository;
 
 import java.io.IOException;
 import java.util.*;
@@ -17,15 +16,15 @@ import java.util.*;
 public class PhotoService {
     private final AmazonS3Service amazonS3Service;
     private final PhotoRepository photoRepository;
-    private final RoomTypeRepository roomTypeRepository;
+    private final RoomService roomService;
 
     @Value("${aws.s3.bucket.name}")
     private String bucketName;
 
-    public PhotoService(final AmazonS3Service amazonS3Service, final PhotoRepository photoRepository, RoomTypeRepository roomTypeRepository) {
+    public PhotoService(final AmazonS3Service amazonS3Service, final PhotoRepository photoRepository, RoomService roomService) {
         this.amazonS3Service = amazonS3Service;
         this.photoRepository = photoRepository;
-        this.roomTypeRepository = roomTypeRepository;
+        this.roomService = roomService;
     }
 
     public void upload(MultipartFile file, final Long roomTypeId) throws IOException {
@@ -46,23 +45,25 @@ public class PhotoService {
         // Saving metadata to db
         photoRepository.save(Photo.builder()
                 .fileName(fileName)
-                .filePath(amazonS3Service.getPhotoURL(this.bucketName, roomTypeId).toString())
-                .roomType(roomTypeRepository.findById(roomTypeId).orElseThrow(() ->
+                .filePath(amazonS3Service.getPhotoURL(this.bucketName, roomTypeId).toString() + "/" + fileName)
+                .roomType(roomService.findRoomTypeById(roomTypeId).orElseThrow(() ->
                         new IllegalArgumentException("Room type with that id does not exists!")
                 ))
                 .build());
     }
 
+    @Deprecated
+    //still dont know if would be necessary
     public S3Object download(Long id) {
         Photo photo = photoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(""));
         return amazonS3Service.downloadFromS3(photo.getFilePath(), photo.getFileName());
     }
 
-    public List<Photo> allPhotos() {
+    public List<Photo> showAllPhotos() {
         return photoRepository.findAll();
     }
 
-    public List<Photo> listAllById(Long id) {
+    public List<Photo> showPhotosByRoomTypeId(Long id) {
         return photoRepository.findAllByRoomTypeId(id);
     }
 }

@@ -5,7 +5,6 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import org.springframework.stereotype.Service;
-import pl.hotel.tobiczyk.repository.PhotoRepository;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -17,7 +16,7 @@ public class AmazonS3Service {
 
     private final AmazonS3 amazonS3;
 
-    public AmazonS3Service(AmazonS3 amazonS3, PhotoRepository photoRepository) {
+    public AmazonS3Service(AmazonS3 amazonS3) {
         this.amazonS3 = amazonS3;
     }
 

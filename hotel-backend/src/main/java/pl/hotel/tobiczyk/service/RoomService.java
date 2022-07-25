@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.hotel.tobiczyk.domain.dto.ChangePriceDto;
 import pl.hotel.tobiczyk.domain.dto.RoomDto;
 import pl.hotel.tobiczyk.domain.model.Room;
+import pl.hotel.tobiczyk.domain.model.RoomType;
 import pl.hotel.tobiczyk.repository.RoomRepository;
 import pl.hotel.tobiczyk.repository.RoomTypeRepository;
 
@@ -23,6 +24,14 @@ public class RoomService {
 
     public List<Room> findAllRooms() {
         return roomRepository.findAll();
+    }
+
+    public List<RoomType> findAllRoomTypes() {
+        return roomTypeRepository.findAll();
+    }
+
+    public Optional<RoomType> findRoomTypeById(Long id) {
+        return roomTypeRepository.findById(id);
     }
 
     public Room createNewRoom(RoomDto toCreate) {

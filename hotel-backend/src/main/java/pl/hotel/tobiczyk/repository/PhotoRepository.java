@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface PhotoRepository extends JpaRepository<Photo, Long> {
 
+    List<Photo> findAll();
     List<Photo> findAllByRoomTypeId(final Long id);
 }
