@@ -7,7 +7,7 @@
     <meta name="author" content="Damian Tobiczyk" />
     <title>Pokoje Gościnne Tobiczyk</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/logoPokoje.png.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/icon.png" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" />
 </head>
@@ -47,13 +47,13 @@
                 <a href="/panel/admin" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
                     <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Panel</span>
                 </a>
-                <a href="/panel/admin/editRooms" class="list-group-item list-group-item-action py-2 ripple ">
-                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Edytuj Pokoje</span>
+                <a href="/panel/admin/editRooms" class="list-group-item list-group-item-action py-2 ripple active">
+                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Edytuj pokoje</span>
                 </a>
                 <a href="/panel/admin/editPhotos" class="list-group-item list-group-item-action py-2 ripple"
                 ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Edytuj zdjęcia</span></a
                 >
-                <a href="/panel/admin/changeRoomPrice" class="list-group-item list-group-item-action py-2 ripple active"
+                <a href="/panel/admin/changeRoomPrice" class="list-group-item list-group-item-action py-2 ripple"
                 ><i class="fas fa-lock fa-fw me-3"></i><span>Zmień ceny</span></a
                 >
                 <a href="#" class="list-group-item list-group-item-action py-2 ripple">
@@ -76,28 +76,54 @@
 <!--Main layout-->
 <!-- Page Content-->
 <div class="container px-4 px-lg-5">
-    <!-- Heading Row-->
-    <div class="row gx-4 gx-lg-5 align-items-center my-5">
-        <form action="#" th:action="@{/panel/admin/changeRoomPrice}" th:object="${changePriceDto}" method="post">
-            <div class="form-group">
-                <label for="roomTypeId">Typ pokoju</label>
-                <select th:field="*{id}" class="form-control" id="roomTypeId">
-                    <option th:each="type: ${roomTypes}" th:value="${type.getId()}" th:text="${type.getDescription()}"/>
-                </select>
-            </div></br>
-            <div class="form-group">
-                <label for="roomPrice">Cena</label>
-                <input type="number" th:field="*{price}" class="form-control" id="roomPrice">
-            </div></br>
-            <div th:if="${errors} != null">
-                <ul>
-                    <b><li th:each="err : ${errors}" th:text="${err.getDefaultMessage()}" style="color:red;" /></b>
-                </ul>
-            </div></br>
-            <button type="submit" class="btn btn-primary">Dodaj</button>
-            <input type="reset" class="btn btn-primary"/>
-        </form>
+    <div class ="row text-center text-lg-start">
+
+        <div>
+            <h1 id="addPhotos" class="fw-light text-center text-lg-start mt-4 mb-0">Dodaj pokój</h1>
+            <form th:action="@{/panel/admin/addRoom}">
+                <div style="height: 5px"></div>
+                <button type="submit" name="photoId" class="btn btn-primary"><b>+</b></button>
+            </form>
+        </div>
+
+        <hr class="mt-2 mb-5">
+
+        <div class="row gx-4 gx-lg-5">
+            <div>
+                <!--/*@thymesVar id="rooms" type="java.util.List<pl.hotel.tobiczyk.domain.model.Room>"*/-->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th> Nazwa pokoju </th>
+                        <th> Liczba miejsc</th>
+                        <th> Opis pokoju </th>
+                        <th> Cena za pokój</th>
+                        <th> Usuń</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="room : ${rooms}">
+                        <td th:text="|${room.getDescription()}|"></td>
+                        <td th:text="|${room.getRoomType().getNumberOfPeople()}|"></td>
+                        <td th:text="|${room.getRoomType().getDescription()}|"></td>
+                        <td th:text="|${room.getRoomType().getPrice()}| + ' zł'"></td>
+                        <td>
+                            <form action="#" th:action="@{/panel/admin/deleteRoom}" method="post">
+                                <div style="height: 5px"></div>
+                                <button type="submit" th:value="${room.getId()}" name="roomId" class="btn btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg></button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+</div>
 </div>
 <!-- Footer-->
 <footer class="py-5 bg-dark">

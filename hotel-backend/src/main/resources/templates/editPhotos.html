@@ -7,7 +7,7 @@
     <meta name="author" content="Damian Tobiczyk" />
     <title>Pokoje Gościnne Tobiczyk</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/logoPokoje.png.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/icon.png" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" />
 </head>
@@ -50,10 +50,10 @@
                 <a href="/panel/admin/editRooms" class="list-group-item list-group-item-action py-2 ripple ">
                     <i class="fas fa-chart-area fa-fw me-3"></i><span>Edytuj Pokoje</span>
                 </a>
-                <a href="/panel/admin/editPhotos" class="list-group-item list-group-item-action py-2 ripple"
+                <a href="/panel/admin/editPhotos" class="list-group-item list-group-item-action py-2 ripple active"
                 ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Edytuj zdjęcia</span></a
                 >
-                <a href="/panel/admin/changeRoomPrice" class="list-group-item list-group-item-action py-2 ripple active"
+                <a href="/panel/admin/changeRoomPrice" class="list-group-item list-group-item-action py-2 ripple"
                 ><i class="fas fa-lock fa-fw me-3"></i><span>Zmień ceny</span></a
                 >
                 <a href="#" class="list-group-item list-group-item-action py-2 ripple">
@@ -76,28 +76,28 @@
 <!--Main layout-->
 <!-- Page Content-->
 <div class="container px-4 px-lg-5">
-    <!-- Heading Row-->
-    <div class="row gx-4 gx-lg-5 align-items-center my-5">
-        <form action="#" th:action="@{/panel/admin/changeRoomPrice}" th:object="${changePriceDto}" method="post">
-            <div class="form-group">
-                <label for="roomTypeId">Typ pokoju</label>
-                <select th:field="*{id}" class="form-control" id="roomTypeId">
-                    <option th:each="type: ${roomTypes}" th:value="${type.getId()}" th:text="${type.getDescription()}"/>
-                </select>
-            </div></br>
-            <div class="form-group">
-                <label for="roomPrice">Cena</label>
-                <input type="number" th:field="*{price}" class="form-control" id="roomPrice">
-            </div></br>
-            <div th:if="${errors} != null">
-                <ul>
-                    <b><li th:each="err : ${errors}" th:text="${err.getDefaultMessage()}" style="color:red;" /></b>
-                </ul>
-            </div></br>
-            <button type="submit" class="btn btn-primary">Dodaj</button>
-            <input type="reset" class="btn btn-primary"/>
-        </form>
+    <div class ="row text-center text-lg-start">
+
+        <div>
+            <h1 id="addPhotos" class="fw-light text-center text-lg-start mt-4 mb-0">Dodaj zdjęcia</h1>
+            <form th:action="@{/panel/admin/uploadPhoto}">
+                <div style="height: 5px"></div>
+                <button type="submit" name="photoId" class="btn btn-primary"><b>+</b></button>
+            </form>
+        </div>
+
+        <hr class="mt-2 mb-5">
+
+        <div th:each="photo: ${photos}" class="col-lg-3 col-md-4 col-6">
+            <img class="img-fluid img-thumbnail" th:src="${photo.getFilePath()}" alt="">
+            <form action="#" th:action="@{/panel/admin/deletePhoto}" method="post">
+                <div style="height: 5px"></div>
+                <button type="submit" th:value="${photo.getId()}" name="photoId" style="margin-left: 5px" class="btn btn-primary">Usuń</button>
+            </form>
+            <div style="height: 30px"></div>
+        </div>
     </div>
+</div>
 </div>
 <!-- Footer-->
 <footer class="py-5 bg-dark">

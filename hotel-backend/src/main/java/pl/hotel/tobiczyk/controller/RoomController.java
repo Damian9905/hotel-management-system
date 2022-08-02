@@ -28,7 +28,6 @@ class RoomController {
         return roomService.findAllRooms();
     }
 
-
     @GetMapping(path = "/rooms")
     public String showAllRooms(Model model) {
         model.addAttribute("roomTypes", roomService.findAllRoomTypes());
@@ -52,6 +51,19 @@ class RoomController {
         }
         roomService.createNewRoom(roomDto);
         return "addRoom";
+    }
+
+
+    @GetMapping("/panel/admin/editRooms")
+    public String editRooms(Model model) {
+        model.addAttribute("rooms", roomService.findAllRooms());
+        return "editRooms";
+    }
+
+    @PostMapping("panel/admin/deleteRoom")
+    public String deleteRoom(@RequestParam("roomId") Long id, Model model) {
+        roomService.deleteRoom(id);
+        return "redirect:/panel/admin/editRooms";
     }
 
 

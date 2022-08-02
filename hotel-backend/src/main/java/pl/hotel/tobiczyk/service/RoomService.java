@@ -43,6 +43,10 @@ public class RoomService {
         return roomRepository.save(entity);
     }
 
+    public void deleteRoom(Long roomId) {
+        roomRepository.deleteById(roomId);
+    }
+
     public void updateRoomTypePrice(final ChangePriceDto roomToChange) {
         var room = roomTypeRepository.findById(roomToChange.getId()).orElseThrow(NoSuchElementException::new);
         room.setPrice(Optional.ofNullable(roomToChange.getPrice().doubleValue()).orElse(room.getPrice()));
