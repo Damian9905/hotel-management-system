@@ -32,7 +32,7 @@ class RoomServiceTest {
     @BeforeEach
     void init() {
         MockitoAnnotations.openMocks(this);
-        inMemoryRoomRepository = new InMemoryRoomRepository();
+        //inMemoryRoomRepository = new InMemoryRoomRepository();
         roomService = new RoomService(inMemoryRoomRepository, roomTypeRepository);
     }
 

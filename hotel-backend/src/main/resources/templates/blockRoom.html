@@ -7,7 +7,7 @@
     <meta name="author" content="Damian Tobiczyk" />
     <title>Pokoje Gościnne Tobiczyk</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/icon.png" />
+    <link rel="icon" type="image/x-icon" href="assets/logoPokoje.png.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" />
 </head>
@@ -50,13 +50,13 @@
                 <a href="/panel/admin/editRooms" class="list-group-item list-group-item-action py-2 ripple ">
                     <i class="fas fa-chart-area fa-fw me-3"></i><span>Edytuj Pokoje</span>
                 </a>
-                <a href="/panel/admin/editPhotos" class="list-group-item list-group-item-action py-2 ripple active"
+                <a href="/panel/admin/editPhotos" class="list-group-item list-group-item-action py-2 ripple"
                 ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Edytuj zdjęcia</span></a
                 >
                 <a href="/panel/admin/changeRoomPrice" class="list-group-item list-group-item-action py-2 ripple"
                 ><i class="fas fa-lock fa-fw me-3"></i><span>Zmień ceny</span></a
                 >
-                <a href="/panel/admin/blockRoom" class="list-group-item list-group-item-action py-2 ripple">
+                <a href="/panel/admin/blockRoom" class="list-group-item list-group-item-action py-2 ripple active">
                     <i class="fas fa-chart-pie fa-fw me-3"></i><span>Zablokuj pokój</span>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action py-2 ripple"
@@ -76,27 +76,60 @@
 <!--Main layout-->
 <!-- Page Content-->
 <div class="container px-4 px-lg-5">
+    <h1 id="offert" class="fw-light text-center text-lg-start mt-4 mb-0">Zablokowane pokoje (daty włącznie!)</h1></br>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:each="room: ${rooms}" th:text="${room.getName()}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:each="range: ${ranges}">
+                    <p th:each="pair: ${range}" th:text="${pair.getFirst()} + ' <-> ' + ${pair.getSecond()}"></p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <!-- Heading Row-->
-    <div class="row gx-4 gx-lg-5 align-items-center my-5">
-        <form enctype="multipart/form-data" action="#" th:action="@{/panel/admin/uploadPhoto}" method="post">
+    <div class="row gx-4 gx-lg-5 align-items-center my-5"></br></br>
+        <h1 id="action" class="fw-light text-center text-lg-start mt-4 mb-0">Zablokuj pokój</h1></br>
+        <form action="#" th:action="@{/panel/admin/blockRoom}" th:object="${blockRoomDto}" method="post">
             <div class="form-group">
-                <label for="roomTypeId">Typ pokoju</label>
-                <select class="form-control" id="roomTypeId" name="id">
-                    <option th:each="type: ${roomTypes}" th:value="${type.getId()}" th:text="${type.getDescription()}"/>
+                <label for="roomId">Typ pokoju</label>
+                <select th:field="*{roomId}" class="form-control" id="roomId">
+                    <option th:each="room: ${rooms}" th:value="${room.getId()}" th:text="${room.getDescription()}"/>
                 </select>
             </div></br>
             <div class="form-group">
-                <label for="fileForm">Wybierz plik</label>
-                <input type="file" name="file" class="form-control" id="fileForm">
+                <div class="left" style="width: 48%; float: left; display: inline;">
+                    <label for="dateFrom">Data od</label>
+                    <input type="date" th:field="*{dateFrom}" class="form-control" id="dateFrom" placeholder="Data przyjazdu gosci">
+                </div>
+                <div class="right" style="width: 48%;  float: right; display: inline;">
+                    <label for="dateTo">Data do</label>
+                    <input type="date" th:field="*{dateTo}" class="form-control" id="dateTo" placeholder="Data wyjazdu gości">
+                </div>
+            <div style="clear: both"></div>
+            </div></br>
+            <div th:if="${errors} != null">
+                <ul>
+                    <b><li th:each="err : ${errors}" th:text="${err.getDefaultMessage()}" style="color:red;" /></b>
+                </ul>
             </div></br>
             <div th:if="${exception} != null">
                 <ul>
                     <b><li th:text="${exception}" style="color:red;" /></b>
                 </ul>
             </div></br>
-            <button type="submit" class="btn btn-primary">Dodaj</button>
+            <button type="submit" class="btn btn-primary">Zablokuj</button>
+            <input type="reset" class="btn btn-primary"/>
         </form>
     </div>
+</div>
+
 </div>
 <!-- Footer-->
 <footer class="py-5 bg-dark">
