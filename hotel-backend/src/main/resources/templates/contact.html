@@ -20,9 +20,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" aria-current="page" href="/panel/admin">Admin</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/rooms">Oferta</a></li>
+                <li class="nav-item"><a class="nav-link" href="/rooms">Oferta</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Szukaj Terminu</a></li>
-                <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/contact">Kontakt</a></li>
             </ul>
         </div>
     </div>
@@ -38,56 +38,26 @@
             <a class="btn btn-primary" href="#!">Wyszukaj termin już dziś!</a>
         </div>
     </div>
-    <h1 id="offert" class="fw-light text-center text-lg-start mt-4 mb-0">Nasza Oferta</h1>
+    <h1 id="offert" class="fw-light text-center text-lg-start mt-4 mb-0">Kontakt</h1>
     </br>
     <!-- Content Row-->
-    <div class="row gx-4 gx-lg-5">
+    <div class="container px-4 px-lg-5">
         <div>
-            <!--/*@thymesVar id="rooms" type="java.util.List<pl.hotel.tobiczyk.domain.model.Room>"*/-->
-            <table class="table">
-                <thead>
-                <tr>
-                    <th> Nazwa pokoju </th>
-                    <th> Liczba miejsc</th>
-                    <th> Opis pokoju </th>
-                    <th> Cena za pokój</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="room : ${rooms}">
-                    <td th:text="|${room.getDescription()}|"></td>
-                    <td th:text="|${room.getRoomType().getNumberOfPeople()}|"></td>
-                    <td th:text="|${room.getRoomType().getDescription()}|"></td>
-                    <td th:text="|${room.getRoomType().getPrice()}| + ' zł'"></td>
-                </tr>
-                </tbody>
-            </table>
-            </div>
-        </div>
-    </br>
-
-    <div class="container">
-
-        <h1 id="gallery" class="fw-light text-center text-lg-start mt-4 mb-0">Galeria</h1>
-
-        <hr class="mt-2 mb-5">
-
-        <div th:each="type: ${roomTypes}" class="row text-center text-lg-start">
-            <h3 th:id="${type.getId()}" class="fw-light text-center text-lg-start mt-4 mb-0" th:text="${type.getDescription()}"></h3>
-
-            <div th:each="photo: ${photos}" th:if="${photo.getRoomType().getId()} == ${type.getId()}" class="col-lg-3 col-md-4 col-6">
-                <img class="img-fluid img-thumbnail" th:src="${photo.getFilePath()}" alt="">
-            </div>
-        </div>
-
-    </div>
-        <br/>
-        <h1 id="attractions"> Atrakcje w pobliżu</h1>
-        <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.
+            <h4 class="fw-light text-center text-lg-start mt-4 mb-0"><b>Telefon:</b> +48 123-456-789</h4>
+            <h4 class="fw-light text-center text-lg-start mt-4 mb-0"><b>Email:</b> example@emial.com</h4>
+            <h4 class="fw-light text-center text-lg-start mt-4 mb-0"><b>Address:</b> Gliwice, Akademicka 16, 41-100 Gliwice</h4>
+            <h4 class="fw-light text-center text-lg-start mt-4 mb-0"><b>Znajdź nas online: </b> www.booking.com/pokoje-goscinne-piotrowice</h4>
+            <h4 class="fw-light text-center text-lg-start mt-4 mb-0"><b>I w social mediach:</b></h4>
+            <br>
+            <a href="#" style="margin-right: 10px"><img src="../assets/icons8-facebook-48.png"></a>
+            <a href="#" style="margin-right: 10px"><img src="../assets/icons8-instagram-48.png"></a>
+            <a href="#" style="margin-right: 10px"><img src="../assets/icons8-linkedin-48.png"></a>
+            <a href="#" style="margin-right: 10px"><img src="../assets/icons8-whatsapp-48.png"></a>
+            <p><p></p></p>
+            <h4 id="location" class="fw-light text-center text-lg-start mt-4 mb-0"><b>Nasza lokalizacja:</b></h4>
+            <div class="mapouter" style="margin-bottom: 20px; margin-top: 20px"><div class="gmap_canvas"><iframe width="1100" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Andrychowska%2040,%2032-641&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">add google maps</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:1100px;}</style></div></div>
         </div>
     </div>
-</div>
 <!-- Footer-->
 <footer class="py-5 bg-dark">
     <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Damian Tobiczyk 2022</p></div>

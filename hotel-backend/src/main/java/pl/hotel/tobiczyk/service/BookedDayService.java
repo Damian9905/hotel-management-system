@@ -59,13 +59,13 @@ public class BookedDayService {
         for(int i = 1; i < bookedDays.size(); i++) {
             if(!bookedDays.get(i-1).getBookedDay().plusDays(1L).equals(bookedDays.get(i).getBookedDay())){
                 end = i-1;
-                var range = Pair.of(bookedDays.get(start).getBookedDay(), bookedDays.get(end).getBookedDay());
+                var range = Pair.of(bookedDays.get(start).getBookedDay(), bookedDays.get(end).getBookedDay().plusDays(1L));
                 listOfRanges.add(range);
                 start = i;
             }
             if(i == bookedDays.size() -1) {
                 end = i;
-                var range = Pair.of(bookedDays.get(start).getBookedDay(), bookedDays.get(end).getBookedDay());
+                var range = Pair.of(bookedDays.get(start).getBookedDay(), bookedDays.get(end).getBookedDay().plusDays(1L));
                 listOfRanges.add(range);
             }
         }

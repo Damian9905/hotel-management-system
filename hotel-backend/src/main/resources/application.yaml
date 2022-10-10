@@ -23,9 +23,13 @@ spring:
 okta:
   oauth2:
     issuer: https://dev-87163480.okta.com/oauth2/default
-    client-id: 0oa5asfkz7HW7y1z55d7
-    redirect-uri: /login/oauth2/code/okta
-    client-secret: kjycVIA2kyQMUosISaEWNGb4CmbZM_WyPm2M700P
+    clientId: 0oa6orr3gkY3MOoPX5d7
+    clientSecret: gXtAW-chOw0y_LZL5kzrscDby_vPl_UG_7BVwAag
+    audience: api://default
+    baseUrl: https://dev-87163480.okta.com
+    rolesClaim: groups
+    redirect-uri: /authorization-code/callback
+
 
 aws:
   access:
