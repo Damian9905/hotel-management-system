@@ -39,7 +39,7 @@ class BookedDayServiceTest {
 
     var sut = new BookedDayService(bookedDaysRepository, mock(RoomService.class));
 
-    var result = sut.showBlockedRangesOfDaysForRoom(1L);
+    var result = sut.getBlockedRangesOfDaysForRoom(1L);
 
     assertEquals(result.size(), 2);
     assertEquals(result.get(0).getFirst(), LocalDate.of(2022, 8, 01));
@@ -71,7 +71,7 @@ class BookedDayServiceTest {
 
     var sut = new BookedDayService(bookedDaysRepository, mock(RoomService.class));
 
-    var result = sut.showBlockedRangesOfDaysForRoom(1L);
+    var result = sut.getBlockedRangesOfDaysForRoom(1L);
 
   }
 
@@ -86,5 +86,8 @@ class BookedDayServiceTest {
 
     assertDoesNotThrow(() -> sut.findBookedDaysForRoom(1L));
   }
+
+  //TODO:
+  //test with invalid date format
 
 }
