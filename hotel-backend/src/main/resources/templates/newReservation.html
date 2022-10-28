@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Damian Tobiczyk" />
+    <title>Pokoje Gościnne Tobiczyk</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/iconpng" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" href="/">Pokoje Gościnne</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/panel/admin">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="/rooms">Oferta</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/search">Szukaj Terminu</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Page Content-->
+<div class="container px-4 px-lg-5">
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="../assets/logoPokoje.png" alt="..." /></div>
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Pokoje Gościnne Tobiczyk</h1>
+            <p style="text-align: justify">Nasze pokoje to rodzinny biznes prowadzony od kilku lat. Obiekt znajduje się w małej, cichej, malowniczej miejscowości co pozwala na odpoczynek i zaczerpnięcie świeżego oddechu. Zapraszamy do zapoznania się z naszą ofertą</p>
+            <a class="btn btn-primary" href="/search">Wyszukaj termin już dziś!</a>
+        </div>
+    </div>
+    <h1 id="offert" class="fw-light text-center text-lg-start mt-4 mb-0">Nowa Rezerwacja</h1>
+    </br>
+    <!-- Content Row-->
+    <div class="container px-4 px-lg-5">
+        <div>
+            <form action="#" th:action="@{/reserve(roomId=${reservationDto.roomId})}" method="post" th:object="${reservation}" style="margin-bottom: 100px">
+                <div class="form-group">
+                    <label for="name">Imię</label>
+                    <input type="text" class="form-control" id="name" th:value="${oidcUser.name}" readonly>
+                    <label for="lastName">Nazwisko</label>
+                    <input type="text" class="form-control" id="lastName" th:value="${oidcUser.lastName}" readonly>
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" th:value="${oidcUser.email}" readonly>
+                    <label for="room">Pokój</label>
+                    <input type="text" class="form-control" id="room" th:value="${reservationDto.roomName}" readonly>
+                    <label for="numberOfPeople">Liczba gości</label>
+                    <input type="number" class="form-control" id="numberOfPeople" th:value="${reservationDto.numberOfPeople}" readonly>
+                    <label for="dateFrom">Data zameldowania</label>
+                    <input type="date" class="form-control" id="dateFrom" name="dateFrom" th:value="${reservationDto.dateFrom}" readonly>
+                    <label for="dateTo">Data wymeldowania</label>
+                    <input type="date" class="form-control" id="dateTo" name="dateTo" th:value="${reservationDto.dateTo}" readonly>
+                    <label for="paymentMethod">Metoda płatności</label>
+                    <select class="form-control" id="paymentMethod" name="paymentMethod">
+                        <option th:each="method: ${paymentMethods}" th:value="${method}" th:text="${method.getValue()}"/>
+                    </select>
+                    <label for="totalValue">Całkowita wartość rezerwacji</label>
+                    <input type="text" class="form-control" id="totalValue" name="totalValue" th:value="${reservationDto.totalValue}" readonly>
+                </div>
+                <div th:if="${errors} != null">
+                    <ul>
+                        <b><li th:each="err : ${errors}" th:text="${err.getDefaultMessage()}" style="color:red;" /></b>
+                    </ul>
+                </div></br>
+                <div th:if="${exception} != null">
+                    <ul>
+                        <b><li th:text="${exception}" style="color:red;" /></b>
+                    </ul>
+                    </br></br>
+                </div>
+                <button type="submit" class="btn btn-primary">Rezerwuj</button>
+                <button type="reset" class="btn btn-primary">Anuluj</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container px-4 px-lg-5" style="width: 100%"><p class="m-0 text-center text-white">Copyright &copy; Damian Tobiczyk 2022</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../static/js/scripts.js"></script>
+</body>
+</html>

@@ -30,4 +30,7 @@ public class Room {
     @OneToMany (targetEntity = BookedDay.class, cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<BookedDay> bookedDays;
+    @OneToMany (targetEntity = Reservation.class, cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Reservation> reservations;
 }

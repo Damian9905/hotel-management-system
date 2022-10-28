@@ -15,7 +15,7 @@ public class AdminPanelController {
     @GetMapping
     @PreAuthorize("hasRole('USER')")
     public String showAdminPanel(@AuthenticationPrincipal OidcUser oidcUser) {
-        System.out.println(oidcUser);
+        System.out.println(oidcUser.getUserInfo().getGivenName());
         return "adminPanel";
     }
 }

@@ -94,8 +94,14 @@
                         <td th:text="|${room.getDescription()}|"></td>
                         <td th:text="|${room.getNumberOfPeople()}|"></td>
                         <td th:text="|${room.getPrice()}| + ' zł'"></td>
-                        <td th:text="|${room.getPrice() * numberOfNights}| + ' zł'"></td>
-                        <td><button class="btn btn-primary">Rezerwuj</button></td>
+                        <td th:text="|${room.getPrice() * numberOfNights}| + ' zł'" th:name="totalValue"></td>
+                        <td>
+                            <form action="#" th:action="@{/newReservation(id=${room.getId()}, dateFrom=${oldSearchDto.dateFrom}, dateTo=${oldSearchDto.dateTo}, totalValue=${room.getPrice() * numberOfNights})}" method="post">
+                                <div style="height: 5px"></div>
+                                <button type="submit" th:value="${room.getId()}" name="roomId" class="btn btn-primary">
+                                    Rezerwuj</button>
+                            </form>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
