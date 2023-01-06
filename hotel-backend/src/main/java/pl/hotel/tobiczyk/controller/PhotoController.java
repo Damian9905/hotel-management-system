@@ -1,6 +1,5 @@
 package pl.hotel.tobiczyk.controller;
 
-import com.amazonaws.services.elasticloadbalancingv2.model.RedirectActionConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

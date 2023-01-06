@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name = "payments")

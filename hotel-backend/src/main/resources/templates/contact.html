@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,10 +19,21 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="/panel/admin">Admin</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" th:if="${#authentication.principal.attributes.given_name == 'Admin'}" aria-current="page" href="/panel/admin">Admin</a></li>
                 <li class="nav-item"><a class="nav-link" href="/rooms">Oferta</a></li>
                 <li class="nav-item"><a class="nav-link" href="/search">Szukaj Terminu</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/contact">Kontakt</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
+                <li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" href="/login1">Zaloguj</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span th:text="${#authentication.principal.attributes.given_name}"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/panel/user">Konto</a>
+                            <a class="dropdown-item" href="/logout">Wyloguj</a>
+                        </div>
+                    </div></li>
             </ul>
         </div>
     </div>
@@ -56,6 +67,7 @@
             <p><p></p></p>
             <h4 id="location" class="fw-light text-center text-lg-start mt-4 mb-0"><b>Nasza lokalizacja:</b></h4>
             <div class="mapouter" style="margin-bottom: 20px; margin-top: 20px"><div class="gmap_canvas"><iframe width="1100" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Andrychowska%2040,%2032-641&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">add google maps</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:1100px;}</style></div></div>
+        </div>
         </div>
     </div>
 <!-- Footer-->

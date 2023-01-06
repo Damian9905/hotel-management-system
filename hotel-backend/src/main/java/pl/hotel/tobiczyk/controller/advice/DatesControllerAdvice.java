@@ -12,6 +12,8 @@ import pl.hotel.tobiczyk.domain.exception.InvalidDateRangeException;
 import pl.hotel.tobiczyk.service.BookedDayService;
 import pl.hotel.tobiczyk.service.RoomService;
 
+import java.time.DateTimeException;
+
 @ControllerAdvice
 public class DatesControllerAdvice {
   private RoomService roomService;
@@ -22,7 +24,7 @@ public class DatesControllerAdvice {
     this.bookedDayService = bookedDayService;
   }
 
-  @ExceptionHandler({InvalidDateRangeException.class, DayAlreadyBookedException.class})
+  @ExceptionHandler({InvalidDateRangeException.class, DayAlreadyBookedException.class, DateTimeException.class})
   public String handle(final DateException ex, final Model model) {
     if(ex.getTemplate().equals(TemplateConstants.BLOCK_ROOM_TEMPLATE)){
       model.addAttribute("exception", ex.getMessage());

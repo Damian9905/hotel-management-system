@@ -1,5 +1,7 @@
 package pl.hotel.tobiczyk.service;
 
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import pl.hotel.tobiczyk.domain.constants.TemplateConstants;
@@ -18,6 +20,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
+@Log
 public class BookedDayService {
     private BookedDayRepository bookedDaysRepository;
     private RoomService roomService;
@@ -42,12 +45,12 @@ public class BookedDayService {
                         BookedDay.builder()
                             .bookedDay(day)
                             .room(roomService.findRoomById(blockRoomDto.getRoomId())
-                                .orElseThrow(() -> new NoSuchElementException()))
+                                .orElseThrow(NoSuchElementException::new))
                             .build()
                     );
-                    System.out.println("Blocked day: " + day.toString() + "for room: " + blockRoomDto.getRoomId());
+                    log.info("Blocked day: " + day.toString() + "for room: " + blockRoomDto.getRoomId());
                 } catch(Exception ex) {
-                    System.out.println("Day already blocked!: " + day.toString() + "for room: " + blockRoomDto.getRoomId());
+                    log.warning("Day already blocked!: " + day.toString() + "for room: " + blockRoomDto.getRoomId());
                     throw new DayAlreadyBookedException(TemplateConstants.BLOCK_ROOM_TEMPLATE);
                 }
             }
@@ -59,7 +62,8 @@ public class BookedDayService {
         var bookedDays = bookedDaysRepository.findAllByRoomId(roomId).stream()
             .sorted((a,b) -> a.getBookedDay().isBefore(b.getBookedDay()) ? -1 : 1)
             .collect(Collectors.toList());
-        int start = 0, end;
+        int start = 0;
+        int end;
         for(int i = 1; i < bookedDays.size(); i++) {
             if(!bookedDays.get(i-1).getBookedDay().plusDays(1L).equals(bookedDays.get(i).getBookedDay())){
                 end = i-1;
@@ -91,13 +95,9 @@ public class BookedDayService {
         return roomService.findAllRooms().stream()
             .filter(room ->
                 room.getBookedDays()
-                    .stream().map(bookedDay ->
-                        bookedDay.getBookedDay())
+                    .stream().map(BookedDay::getBookedDay)
                     .noneMatch(days::contains)
-            ).map(room -> {
-                System.out.println(room.getName());
-                return RoomReadModel.fromRoom(room);
-            })
+            ).map(RoomReadModel::fromRoom)
             .collect(Collectors.toList());
     }
 
@@ -106,8 +106,6 @@ public class BookedDayService {
     }
 
     public Integer countNights(final LocalDate dateFrom, final LocalDate dateTo) {
-        //TODO:
-        //validator!
         if(dateTo.isBefore(dateFrom))
             throw new InvalidDateRangeException(TemplateConstants.SEARCH_ROOM_TEMPLATE);
         return retrieveDatesToCheck(dateFrom, dateTo).size();

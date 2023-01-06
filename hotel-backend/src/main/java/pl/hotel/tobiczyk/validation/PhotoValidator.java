@@ -1,7 +1,6 @@
 package pl.hotel.tobiczyk.validation;
 
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import pl.hotel.tobiczyk.domain.constants.TemplateConstants;
@@ -22,8 +21,6 @@ public class PhotoValidator  {
     public void validate(final MultipartFile file) {
         if(file.isEmpty())
             throw new EmptyPhotoException(TemplateConstants.PHOTO_TEMPLATE);
-
-        System.out.println(file.getContentType());
 
         if(!VALID_FILE_TYPES.contains(file.getContentType()))
             throw new UnsupportedFileTypeException(TemplateConstants.PHOTO_TEMPLATE);

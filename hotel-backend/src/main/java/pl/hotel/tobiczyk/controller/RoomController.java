@@ -17,6 +17,10 @@ import java.util.List;
 
 @Controller
 class RoomController {
+    private static final String ROOM_TYPES = "roomTypes";
+    private static final String ROOMS = "rooms";
+    private static final String ERRORS = "errors";
+
     private RoomService roomService;
     private PhotoService photoService;
     private BookedDayService bookedDayService;
@@ -35,16 +39,16 @@ class RoomController {
 
     @GetMapping(path = "/rooms")
     public String showAllRooms(final Model model) {
-        model.addAttribute("roomTypes", roomService.findAllRoomTypes());
+        model.addAttribute(ROOM_TYPES, roomService.findAllRoomTypes());
         model.addAttribute("photos", photoService.showAllPhotos());
-        return "rooms";
+        return ROOMS;
     }
 
 
     @GetMapping("/panel/admin/addRoom")
     public String addRoomForm(final Model model) {
         model.addAttribute("roomWriteModel", new RoomWriteModel());
-        model.addAttribute("roomTypes", roomService.findAllRoomTypes());
+        model.addAttribute(ROOM_TYPES, roomService.findAllRoomTypes());
         return "addRoom";
     }
 
@@ -52,7 +56,7 @@ class RoomController {
     public String addRoom(@ModelAttribute @Valid final RoomWriteModel roomWriteModel,
                           final BindingResult result, final Model model) {
         if(result.hasErrors()) {
-            model.addAttribute("errors", result.getAllErrors());
+            model.addAttribute(ERRORS, result.getAllErrors());
             return addRoomForm(model);
         }
         roomService.createNewRoom(roomWriteModel);
@@ -62,7 +66,7 @@ class RoomController {
 
     @GetMapping("/panel/admin/editRooms")
     public String editRooms(final Model model) {
-        model.addAttribute("rooms", roomService.findAllRooms());
+        model.addAttribute(ROOMS, roomService.findAllRooms());
         return "editRooms";
     }
 
@@ -76,7 +80,7 @@ class RoomController {
     @GetMapping("/panel/admin/changeRoomPrice")
     public String changeRoomPriceForm(final Model model) {
         model.addAttribute("changePriceDto", new ChangePriceDto());
-        model.addAttribute("roomTypes", roomService.findAllRoomTypes());
+        model.addAttribute(ROOM_TYPES, roomService.findAllRoomTypes());
         return "changeRoomPrice";
     }
 
@@ -84,7 +88,7 @@ class RoomController {
     public String changeRoomPrice(@ModelAttribute @Valid final ChangePriceDto changePriceDto,
                                   final BindingResult result, final Model model) {
         if(result.hasErrors()) {
-            model.addAttribute("errors", result.getAllErrors());
+            model.addAttribute(ERRORS, result.getAllErrors());
             return changeRoomPriceForm(model);
         }
         roomService.updateRoomTypePrice(changePriceDto);
@@ -94,7 +98,7 @@ class RoomController {
     @GetMapping("panel/admin/blockRoom")
     public String blockRoomForm(final Model model) {
         model.addAttribute("blockRoomDto", new BlockRoomDto());
-        model.addAttribute("rooms", roomService.findAllRooms());
+        model.addAttribute(ROOMS, roomService.findAllRooms());
         model.addAttribute("ranges", bookedDayService.getBlockedDaysForAllRooms());
         return "blockRoom";
     }
@@ -103,7 +107,7 @@ class RoomController {
     public String blockRoom(@ModelAttribute @Valid final BlockRoomDto blockRoomDto,
                             final BindingResult result, final Model model) {
         if(result.hasErrors()) {
-            model.addAttribute("errors", result.getAllErrors());
+            model.addAttribute(ERRORS, result.getAllErrors());
             return blockRoomForm(model);
         }
         bookedDayService.blockRoom(blockRoomDto);

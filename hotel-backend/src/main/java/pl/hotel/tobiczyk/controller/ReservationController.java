@@ -73,4 +73,10 @@ class ReservationController {
         reservationService.makeReservation(roomId, toCreate, oidcUser);
         return "index";
     }
+
+    @GetMapping("/panel/admin/reservations")
+    public String showAllReservations(Model model) {
+        model.addAttribute("reservations", reservationService.getAllReservations());
+        return "reservations";
+    }
 }

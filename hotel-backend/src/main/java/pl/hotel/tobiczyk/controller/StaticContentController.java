@@ -10,12 +10,16 @@ public class StaticContentController {
 
     @GetMapping("/")
     public String getHomePage(@AuthenticationPrincipal OidcUser oidcUser) {
-        System.out.println(oidcUser);
         return "index";
     }
 
     @GetMapping("/contact")
     public String getContactPage() {
         return "contact";
+    }
+
+    @GetMapping("/login1")
+    public String loginPage() {
+        return "redirect:/";
     }
 }

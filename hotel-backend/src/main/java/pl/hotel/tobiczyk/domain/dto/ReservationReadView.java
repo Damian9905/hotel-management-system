@@ -4,20 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.hotel.tobiczyk.domain.model.PaymentMethod;
+
+import java.time.LocalDate;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReservationWriteView {
+public class ReservationReadView {
   private Long id;
-  private Long roomId;
-  private String customerId;
   private String roomName;
+  private String customerFirstName;
+  private String customerLastName;
   private Integer numberOfPeople;
-  private String dateFrom;
-  private String dateTo;
-  private PaymentMethod paymentMethod;
-  private String totalValue;
+  private LocalDate dateFrom;
+  private LocalDate dateTo;
+  private String paymentMethod;
+  private Double totalValue;
 }
