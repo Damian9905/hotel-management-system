@@ -2,7 +2,7 @@ package pl.hotel.tobiczyk.service;
 
 import org.springframework.stereotype.Service;
 import pl.hotel.tobiczyk.domain.dto.ChangePriceDto;
-import pl.hotel.tobiczyk.domain.dto.RoomDto;
+import pl.hotel.tobiczyk.domain.dto.RoomWriteModel;
 import pl.hotel.tobiczyk.domain.model.Room;
 import pl.hotel.tobiczyk.domain.model.RoomType;
 import pl.hotel.tobiczyk.repository.RoomRepository;
@@ -26,6 +26,10 @@ public class RoomService {
         return roomRepository.findAll();
     }
 
+    public Optional<Room> findRoomById(final Long id) {
+        return roomRepository.findById(id);
+    }
+
     public List<RoomType> findAllRoomTypes() {
         return roomTypeRepository.findAll();
     }
@@ -34,13 +38,17 @@ public class RoomService {
         return roomTypeRepository.findById(id);
     }
 
-    public Room createNewRoom(RoomDto toCreate) {
+    public Room createNewRoom(RoomWriteModel toCreate) {
         Room entity = Room.builder()
                 .description(toCreate.getDescription())
                 .name(toCreate.getName())
                 .roomType(roomTypeRepository.findById(toCreate.getRoomTypeId()).orElseThrow(NoSuchElementException::new))
                 .build();
         return roomRepository.save(entity);
+    }
+
+    public void deleteRoom(Long roomId) {
+        roomRepository.deleteById(roomId);
     }
 
     public void updateRoomTypePrice(final ChangePriceDto roomToChange) {

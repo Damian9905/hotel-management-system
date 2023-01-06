@@ -39,4 +39,8 @@ public class AmazonS3Service {
     public S3Object downloadFromS3(String path, String fileName) {
         return amazonS3.getObject(path, fileName);
     }
+
+    public void deleteFromS3(final String bucketName, final String fileName) {
+        amazonS3.deleteObject(bucketName, fileName);
+    }
 }

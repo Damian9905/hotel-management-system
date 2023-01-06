@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -7,7 +7,7 @@
     <meta name="author" content="Damian Tobiczyk" />
     <title>Pokoje Gościnne Tobiczyk</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/logoPokoje.png.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/iconpng" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" />
 </head>
@@ -19,10 +19,21 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="/panel/admin">Admin</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/rooms">Oferta</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Szukaj Terminu</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Kontakt</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" th:if="${#authentication.principal.attributes.given_name == 'Admin'}" aria-current="page" href="/panel/admin">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="/rooms">Oferta</a></li>
+                <li class="nav-item"><a class="nav-link" href="/search">Szukaj Terminu</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
+                <li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" href="/login1">Zaloguj</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span th:text="${#authentication.principal.attributes.given_name}"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/panel/user">Konto</a>
+                            <a class="dropdown-item" href="/logout">Wyloguj</a>
+                        </div>
+                    </div></li>
             </ul>
         </div>
     </div>
@@ -34,11 +45,11 @@
         <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="../assets/logoPokoje.png" alt="..." /></div>
         <div class="col-lg-5">
             <h1 class="font-weight-light">Pokoje Gościnne Tobiczyk</h1>
-            <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
-            <a class="btn btn-primary" href="#!">Wyszukaj termin już dziś!</a>
+            <p style="text-align: justify">Nasze pokoje to rodzinny biznes prowadzony od kilku lat. Obiekt znajduje się w małej, cichej, malowniczej miejscowości co pozwala na odpoczynek i zaczerpnięcie świeżego oddechu. Zapraszamy do zapoznania się z naszą ofertą</p>
+            <a class="btn btn-primary" href="/search">Wyszukaj termin już dziś!</a>
         </div>
     </div>
-    <h1 class="fw-light text-center text-lg-start mt-4 mb-0">Nasza Oferta</h1>
+    <h1 id="offert" class="fw-light text-center text-lg-start mt-4 mb-0">Nasza Oferta</h1>
     </br>
     <!-- Content Row-->
     <div class="row gx-4 gx-lg-5">
@@ -51,7 +62,6 @@
                     <th> Liczba miejsc</th>
                     <th> Opis pokoju </th>
                     <th> Cena za pokój</th>
-                    <th> Galeria </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,8 +69,7 @@
                     <td th:text="|${room.getDescription()}|"></td>
                     <td th:text="|${room.getRoomType().getNumberOfPeople()}|"></td>
                     <td th:text="|${room.getRoomType().getDescription()}|"></td>
-                    <td th:text="|${room.getRoomType().getPrice()}| + ' zł'"></td>>
-                    <td> <a href="#">Zobacz galerię</a></td>
+                    <td th:text="|${room.getRoomType().getPrice()}| + ' zł'"></td>
                 </tr>
                 </tbody>
             </table>
@@ -83,11 +92,6 @@
         </div>
 
     </div>
-        <br/>
-        <h1 id="attractions"> Atrakcje w pobliżu</h1>
-        <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.
-        </div>
     </div>
 </div>
 <!-- Footer-->

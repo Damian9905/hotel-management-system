@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,10 +19,21 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/panel/admin">Admin</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" th:if="${#authentication.principal.attributes.given_name == 'Admin'}" aria-current="page" href="/panel/admin">Admin</a></li>
                 <li class="nav-item"><a class="nav-link" href="/rooms">Oferta</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Szukaj Terminu</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Kontakt</a></li>
+                <li class="nav-item"><a class="nav-link" href="/search">Szukaj Terminu</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
+                <li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" href="/login1">Zaloguj</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span th:text="${#authentication.principal.attributes.given_name}"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/panel/user">Konto</a>
+                            <a class="dropdown-item" href="/logout">Wyloguj</a>
+                        </div>
+                    </div></li>
             </ul>
         </div>
     </div>
@@ -47,22 +58,22 @@
                 <a href="/panel/admin" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
                     <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Panel</span>
                 </a>
-                <a href="/panel/admin/addRoom" class="list-group-item list-group-item-action py-2 ripple ">
-                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Dodaj Pokój</span>
+                <a href="/panel/admin/editRooms" class="list-group-item list-group-item-action py-2 ripple ">
+                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Edytuj Pokoje</span>
                 </a>
-                <a href="/panel/admin/uploadPhoto" class="list-group-item list-group-item-action py-2 ripple"
-                ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Dodaj zdjęcia</span></a
+                <a href="/panel/admin/editPhotos" class="list-group-item list-group-item-action py-2 ripple"
+                ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Edytuj zdjęcia</span></a
                 >
                 <a href="/panel/admin/changeRoomPrice" class="list-group-item list-group-item-action py-2 ripple active"
                 ><i class="fas fa-lock fa-fw me-3"></i><span>Zmień ceny</span></a
                 >
-                <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+                <a href="/panel/admin/blockRoom" class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-chart-pie fa-fw me-3"></i><span>Zablokuj pokój</span>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                <a href="/panel/admin/reservations" class="list-group-item list-group-item-action py-2 ripple"
                 ><i class="fas fa-chart-line fa-fw me-3"></i><span>Pokaż Rezerwacje</span></a
                 >
-                <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+                <a href="/panel/admin/users" class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-chart-pie fa-fw me-3"></i><span>Pokaż użytkowników</span>
                 </a>
             </div>

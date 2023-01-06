@@ -4,7 +4,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd543d83-b062-4e6f-bc0b-afe82bec9805" name="Changes" comment="" />
+    <list default="true" id="fd543d83-b062-4e6f-bc0b-afe82bec9805" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/hotel-backend/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/create_db.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/UserPanelController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/advice/OktaExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/domain/dto/ReservationReadView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/changePassword.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/reservations.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/userPanel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/userReservations.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/users.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/HotelManagementSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/HotelManagementSystemApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/AdminPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/AdminPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/PhotoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/PhotoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/ReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/StaticContentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/StaticContentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/advice/DatesControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/controller/advice/DatesControllerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/domain/constants/TemplateConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/domain/constants/TemplateConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/domain/dto/ReservationWriteView.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/domain/dto/ReservationWriteView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/domain/model/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/domain/model/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/repository/ReservationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/repository/ReservationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/repository/RoomTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/repository/RoomTypeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/AmazonS3Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/AmazonS3Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/BookedDayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/BookedDayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/PhotoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/PhotoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/ReservationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/validation/PhotoValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/validation/PhotoValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/static/assets/logoPokoje.png" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/static/assets/logoPokoje.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/addRoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/addRoom.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/adminPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/adminPanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/blockRoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/blockRoom.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/changeRoomPrice.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/changeRoomPrice.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/editPhotos.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/editPhotos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/editRooms.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/editRooms.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/newReservation.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/newReservation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/rooms.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/rooms.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/uploadPhoto.html" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/resources/templates/uploadPhoto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/test/java/pl/hotel/tobiczyk/HotelManagementSystemApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/test/java/pl/hotel/tobiczyk/HotelManagementSystemApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/test/java/pl/hotel/tobiczyk/service/BookedDayServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/test/java/pl/hotel/tobiczyk/service/BookedDayServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,9 +63,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Class" />
-        <option value="HTML File" />
         <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -43,15 +92,8 @@
       <map>
         <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
-    </option>
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
-      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="2A6weo6fBYEbITxEQXvMtgXGA4O" />
@@ -62,6 +104,7 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -69,27 +112,126 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/hotel-backend" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Think\Desktop\hotel-management-system\hotel-backend" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Think\Desktop\hotel-management-system\src\main\resources\templates" />
       <recent name="C:\Users\Think\Desktop\hotel-management-system\src\main\resources\static" />
       <recent name="C:\Users\Think\Desktop\hotel-management-system\src\main\resources\images" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="HotelManagementSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn install" />
+      <command value="mvn package" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Docker.hotel-backend/docker-compose.yaml.API: Compose Deployment">
+    <configuration name="BookedDayServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.hotel.tobiczyk.HotelManagementSystemApplication" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.hotel.tobiczyk.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.hotel.tobiczyk.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.hotel.tobiczyk.service.BookedDayServiceTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="HotelManagementSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="demo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.hotel.tobiczyk.HotelManagementSystemApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.hotel.tobiczyk.HotelManagementSystemApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="hotel-backend/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="containerName" value="app" />
+          <option name="sourceFilePath" value="hotel-backend/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="hotel-backend/docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="hotel-backend/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="hotel-backend/docker-compose.yaml.API: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="API" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="hotel-backend/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="hotel-backend/docker-compose.yaml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="app" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="hotel-backend/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.BookedDayServiceTest" />
+      <item itemvalue="Spring Boot.HotelManagementSystemApplication" />
+      <item itemvalue="Spring Boot.test" />
+      <item itemvalue="Docker.hotel-backend/Dockerfile" />
+      <item itemvalue="Docker.hotel-backend/docker-compose.yaml: Compose Deployment" />
+      <item itemvalue="Docker.hotel-backend/docker-compose.yaml.app: Compose Deployment" />
+      <item itemvalue="Docker.hotel-backend/docker-compose.yaml.API: Compose Deployment" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.hotel-backend/docker-compose.yaml.API: Compose Deployment" />
+        <item itemvalue="Docker.hotel-backend/docker-compose.yaml.app: Compose Deployment" />
+        <item itemvalue="Docker.hotel-backend/docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.hotel-backend/Dockerfile" />
+        <item itemvalue="JUnit.BookedDayServiceTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -102,10 +244,21 @@
       <workItem from="1654343446860" duration="2639000" />
       <workItem from="1654500801251" duration="7121000" />
       <workItem from="1654604642512" duration="13045000" />
+      <workItem from="1670869665938" duration="3761000" />
+      <workItem from="1670957638575" duration="8935000" />
+      <workItem from="1671054907570" duration="1894000" />
+      <workItem from="1671476391886" duration="921000" />
+      <workItem from="1671477352477" duration="6565000" />
+      <workItem from="1672155126054" duration="15012000" />
+      <workItem from="1672846854959" duration="23368000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
