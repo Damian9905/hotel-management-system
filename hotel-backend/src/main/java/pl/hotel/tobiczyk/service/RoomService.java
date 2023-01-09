@@ -2,7 +2,7 @@ package pl.hotel.tobiczyk.service;
 
 import org.springframework.stereotype.Service;
 import pl.hotel.tobiczyk.domain.dto.ChangePriceDto;
-import pl.hotel.tobiczyk.domain.dto.RoomDto;
+import pl.hotel.tobiczyk.domain.dto.RoomWriteModel;
 import pl.hotel.tobiczyk.domain.model.Room;
 import pl.hotel.tobiczyk.domain.model.RoomType;
 import pl.hotel.tobiczyk.repository.RoomRepository;
@@ -38,7 +38,7 @@ public class RoomService {
         return roomTypeRepository.findById(id);
     }
 
-    public Room createNewRoom(RoomDto toCreate) {
+    public Room createNewRoom(RoomWriteModel toCreate) {
         Room entity = Room.builder()
                 .description(toCreate.getDescription())
                 .name(toCreate.getName())

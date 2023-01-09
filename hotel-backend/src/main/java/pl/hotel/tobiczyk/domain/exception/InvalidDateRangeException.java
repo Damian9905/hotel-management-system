@@ -1,9 +1,14 @@
 package pl.hotel.tobiczyk.domain.exception;
 
-public class InvalidDateRangeException extends IllegalStateException {
-  private static final String MESSAGE = "Start date must be before end date";
+import lombok.Value;
 
-  public InvalidDateRangeException() {
+@Value
+public class InvalidDateRangeException extends DateException {
+  static String MESSAGE = "Start date must be before end date";
+  String template;
+
+  public InvalidDateRangeException(final String template) {
     super(MESSAGE);
+    this.template = template;
   }
 }

@@ -39,14 +39,13 @@ class BookedDayServiceTest {
 
     var sut = new BookedDayService(bookedDaysRepository, mock(RoomService.class));
 
-    var result = sut.showBlockedRangesOfDaysForRoom(1L);
+    var result = sut.getBlockedRangesOfDaysForRoom(1L);
 
-    assertEquals(result.size(), 2);
+    assertEquals(2, result.size());
     assertEquals(result.get(0).getFirst(), LocalDate.of(2022, 8, 01));
-    assertEquals(result.get(0).getSecond(), LocalDate.of(2022, 8, 03));
+    assertEquals(result.get(0).getSecond(), LocalDate.of(2022, 8, 04));
     assertEquals(result.get(1).getFirst(), LocalDate.of(2022, 8, 05));
-    assertEquals(result.get(1).getSecond(), LocalDate.of(2022, 8, 06));
-
+    assertEquals(result.get(1).getSecond(), LocalDate.of(2022, 8, 07));
   }
 
   @Test
@@ -62,7 +61,7 @@ class BookedDayServiceTest {
             .bookedDay(LocalDate.of(2022, 8, 05))
             .build(),
         BookedDay.builder()
-            .bookedDay(LocalDate.of(2022, 8, 07))
+            .bookedDay(LocalDate.of(2022, 8, 06))
             .build()
     );
 
@@ -71,7 +70,15 @@ class BookedDayServiceTest {
 
     var sut = new BookedDayService(bookedDaysRepository, mock(RoomService.class));
 
-    var result = sut.showBlockedRangesOfDaysForRoom(1L);
+    var result = sut.getBlockedRangesOfDaysForRoom(1L);
+
+    assertEquals(3, result.size());
+    assertEquals(result.get(0).getFirst(), LocalDate.of(2022, 8, 01));
+    assertEquals(result.get(0).getSecond(), LocalDate.of(2022, 8, 02));
+    assertEquals(result.get(1).getFirst(), LocalDate.of(2022, 8, 03));
+    assertEquals(result.get(1).getSecond(), LocalDate.of(2022, 8, 04));
+    assertEquals(result.get(2).getFirst(), LocalDate.of(2022, 8, 05));
+    assertEquals(result.get(2).getSecond(), LocalDate.of(2022, 8, 07));
 
   }
 
@@ -84,7 +91,6 @@ class BookedDayServiceTest {
 
     var sut = new BookedDayService(bookedDaysRepository, mock(RoomService.class));
 
-    assertDoesNotThrow(() -> sut.findBookedDaysForRoom(1L));
+    assertDoesNotThrow(() -> sut.getBlockedRangesOfDaysForRoom(1L));
   }
-
 }

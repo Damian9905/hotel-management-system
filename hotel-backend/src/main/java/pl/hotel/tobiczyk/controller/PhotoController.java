@@ -1,6 +1,5 @@
 package pl.hotel.tobiczyk.controller;
 
-import com.amazonaws.services.elasticloadbalancingv2.model.RedirectActionConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +27,7 @@ public class PhotoController {
     }
 
     @GetMapping("panel/admin/uploadPhoto")
-    public String uploadPhotoForm(Model model) {
+    public String uploadPhotoForm(final Model model) {
         model.addAttribute("photo", new Photo());
         model.addAttribute("id", new RoomType().getId());
         model.addAttribute("roomTypes", roomService.findAllRoomTypes());
@@ -36,20 +35,21 @@ public class PhotoController {
     }
 
     @PostMapping("panel/admin/uploadPhoto")
-    public String uploadPhoto(@RequestParam("id") Long id, @RequestParam("file") MultipartFile file) throws IOException {
+    public String uploadPhoto(@RequestParam("id") final Long id, @RequestParam("file") final MultipartFile file,
+                              final Model model) throws IOException {
         validator.validate(file);
         photoService.upload(file, id);
-        return "uploadPhoto";
+        return uploadPhotoForm(model);
     }
 
     @GetMapping("panel/admin/editPhotos")
-    public String showPhotos(Model model){
+    public String showPhotos(final Model model){
         model.addAttribute("photos", photoService.showAllPhotos());
         return "editPhotos";
     }
 
     @PostMapping("panel/admin/deletePhoto")
-    public String deletePhoto(@RequestParam("photoId") Long id, RedirectActionConfig config, Model model) {
+    public String deletePhoto(@RequestParam("photoId") final Long id) {
         photoService.deletePhoto(id);
         return "redirect:/panel/admin/editPhotos";
     }

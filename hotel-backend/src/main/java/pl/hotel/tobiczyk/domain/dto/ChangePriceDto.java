@@ -10,6 +10,6 @@ public class ChangePriceDto {
     @NotNull
     private Long id;
     @NotNull(message = "Price must not be empty!")
-    @Positive(message = "Price has to be a positive number! (unless you want to pay ;)")
+    @Positive(message = "Price has to be a positive number!")
     private Integer price;
 }

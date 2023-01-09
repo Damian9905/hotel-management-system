@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd543d83-b062-4e6f-bc0b-afe82bec9805" name="Changes" comment="" />
+    <list default="true" id="fd543d83-b062-4e6f-bc0b-afe82bec9805" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/domain/constants/TemplateConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-backend/src/main/java/pl/hotel/tobiczyk/domain/constants/TemplateConstants.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,9 +19,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Class" />
-        <option value="HTML File" />
         <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -43,15 +48,8 @@
       <map>
         <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
-    </option>
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
-      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="2A6weo6fBYEbITxEQXvMtgXGA4O" />
@@ -62,6 +60,7 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -69,27 +68,126 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/hotel-backend" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Think\Desktop\hotel-management-system\hotel-backend" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Think\Desktop\hotel-management-system\src\main\resources\templates" />
       <recent name="C:\Users\Think\Desktop\hotel-management-system\src\main\resources\static" />
       <recent name="C:\Users\Think\Desktop\hotel-management-system\src\main\resources\images" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="HotelManagementSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn install" />
+      <command value="mvn package" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.HotelManagementSystemApplication">
+    <configuration name="BookedDayServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.hotel.tobiczyk.HotelManagementSystemApplication" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.hotel.tobiczyk.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.hotel.tobiczyk.service" />
+      <option name="MAIN_CLASS_NAME" value="pl.hotel.tobiczyk.service.BookedDayServiceTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="HotelManagementSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="demo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.hotel.tobiczyk.HotelManagementSystemApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.hotel.tobiczyk.HotelManagementSystemApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="hotel-backend/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="containerName" value="app" />
+          <option name="sourceFilePath" value="hotel-backend/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="hotel-backend/docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="hotel-backend/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="hotel-backend/docker-compose.yaml.API: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="API" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="hotel-backend/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="hotel-backend/docker-compose.yaml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="app" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="hotel-backend/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.hotel-backend/Dockerfile" />
+      <item itemvalue="Docker.hotel-backend/docker-compose.yaml: Compose Deployment" />
+      <item itemvalue="Docker.hotel-backend/docker-compose.yaml.app: Compose Deployment" />
+      <item itemvalue="Docker.hotel-backend/docker-compose.yaml.API: Compose Deployment" />
+      <item itemvalue="JUnit.BookedDayServiceTest" />
+      <item itemvalue="Spring Boot.HotelManagementSystemApplication" />
+      <item itemvalue="Spring Boot.test" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.hotel-backend/docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.hotel-backend/Dockerfile" />
+        <item itemvalue="Docker.hotel-backend/docker-compose.yaml.API: Compose Deployment" />
+        <item itemvalue="Docker.hotel-backend/docker-compose.yaml.app: Compose Deployment" />
+        <item itemvalue="JUnit.BookedDayServiceTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -102,10 +200,21 @@
       <workItem from="1654343446860" duration="2639000" />
       <workItem from="1654500801251" duration="7121000" />
       <workItem from="1654604642512" duration="13045000" />
+      <workItem from="1670869665938" duration="3761000" />
+      <workItem from="1670957638575" duration="8935000" />
+      <workItem from="1671054907570" duration="1894000" />
+      <workItem from="1671476391886" duration="921000" />
+      <workItem from="1671477352477" duration="6565000" />
+      <workItem from="1672155126054" duration="15012000" />
+      <workItem from="1672846854959" duration="36153000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

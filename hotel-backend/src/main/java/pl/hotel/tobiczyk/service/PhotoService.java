@@ -1,8 +1,6 @@
 package pl.hotel.tobiczyk.service;
 
 import com.amazonaws.services.glue.model.EntityNotFoundException;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.S3Object;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,7 +39,7 @@ public class PhotoService {
         String fileName = String.format("%s", file.getOriginalFilename());
 
         // Uploading file to s3
-        PutObjectResult putObjectResult = amazonS3Service.uploadToS3(
+        amazonS3Service.uploadToS3(
                 path, fileName, Optional.of(metadata), file.getInputStream());
 
         // Saving metadata to db

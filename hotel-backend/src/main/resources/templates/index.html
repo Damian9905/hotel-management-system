@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,10 +19,21 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="/panel/admin">Admin</a></li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" th:if="${#authentication.principal.attributes.given_name == 'Admin'}" aria-current="page" href="/panel/admin">Admin</a></li>
                         <li class="nav-item"><a class="nav-link" href="/rooms">Oferta</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Szukaj Terminu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/search">Szukaj Terminu</a></li>
                         <li class="nav-item"><a class="nav-link" href="/contact">Kontakt</a></li>
+                        <li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" href="/login1">Zaloguj</a></li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                            <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span th:text="${#authentication.principal.attributes.given_name}"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/panel/user">Konto</a>
+                                <a class="dropdown-item" href="/logout">Wyloguj</a>
+                            </div>
+                        </div></li>
                     </ul>
                 </div>
             </div>
@@ -34,39 +45,28 @@
                 <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="../assets/logoPokoje.png" alt="..." /></div>
                 <div class="col-lg-5">
                     <h1 class="font-weight-light">Pokoje Gościnne Tobiczyk</h1>
-                    <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
-                    <a class="btn btn-primary" href="#!">Wyszukaj termin już dziś!</a>
+                    <p style="text-align: justify">Nasze pokoje to rodzinny biznes prowadzony od kilku lat. Obiekt znajduje się w małej, cichej, malowniczej miejscowości co pozwala na odpoczynek i zaczerpnięcie świeżego oddechu. Zapraszamy do zapoznania się z naszą ofertą</p>
+                    <a class="btn btn-primary" href="/search">Wyszukaj termin już dziś!</a>
                 </div>
             </div>
             <!-- Call to Action-->
-            <div class="card text-white bg-secondary my-5 py-4 text-center">
-                <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div>
-            </div>
+
             <!-- Content Row-->
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-5">
+            <div class="row">
+                <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
                             <h2 class="card-title">Pokoje</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                            <p class="card-text">W naszej ofercie znajdują się pokoje z łazienkami w wysokim standardzie. Oferujemy pokoje dwuosobowe, trzyosobowe oraz pokój rodzinny dla 4-6 osób.</p>
                         </div>
                         <div class="card-footer"><a class="btn btn-primary btn-sm" href="/rooms#offert">Zobacz pełną ofertę</a></div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Atrakcje</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="/rooms#attractions">Więcej informacji</a></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
+                <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
                             <h2 class="card-title">Lokalizacja</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                            <p class="card-text">Obiekt znajduje się w ciszej i spokojnej miejscowości oddalonej o 5km od parku rozrywki Energylandia w Zatorze. Jest to idealny wybór, aby znaleźć chwilę odpoczynku po dniu pełnym atrakcji!</p>
                         </div>
                         <div class="card-footer"><a class="btn btn-primary btn-sm" href="/contact#location">Więcej informacji</a></div>
                     </div>
