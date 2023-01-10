@@ -91,4 +91,9 @@ public class ReservationService {
     ));
     return reservation;
   }
+
+  public void cancelReservation(final Long id) {
+    reservationRepository.deleteById(id);
+    paymentService.cancelPayment(id);
+  }
 }

@@ -22,29 +22,23 @@ public class UserPanelController {
   @GetMapping()
   public String getUserPanel(@AuthenticationPrincipal OidcUser oidcUser, Model model) {
     model.addAttribute("name", oidcUser.getUserInfo().getFullName());
-    return "userPanel";
-  }
-
-  @GetMapping("/userInfo")
-  public String getUserInfo(@AuthenticationPrincipal OidcUser oidcUser, Model model) {
-    model.addAttribute("userInfo", oidcUser.getUserInfo());
-    return "userInfo";
+    return "userPanel/userPanel";
   }
 
   @GetMapping("/userReservations")
   public String getUserReservations(@AuthenticationPrincipal OidcUser oidcUser, Model model) {
     model.addAttribute("reservations", reservationService.getUserReservations(oidcUser.getName()));
-    return "userReservations";
+    return "userPanel/userReservations";
   }
 
   @GetMapping("/changePassword")
-  public String getChangePasswordForm(final Model model) {
-    return "changePassword";
+  public String getChangePasswordForm() {
+    return "userPanel/changePassword";
   }
 
   @PostMapping("/changePassword")
   public String getChangePasswordForm(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword, @AuthenticationPrincipal OidcUser user, final Model model) {
     userService.changePassword(user.getName(), oldPassword, newPassword);
-    return "changePassword";
+    return "userPanel/changePassword";
   }
 }

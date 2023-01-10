@@ -19,6 +19,7 @@ import java.util.List;
 class RoomController {
     private static final String ROOM_TYPES = "roomTypes";
     private static final String ROOMS = "rooms";
+    private static final String ROOMS_TEMPLATE = "staticContent/rooms";
     private static final String ERRORS = "errors";
 
     private RoomService roomService;
@@ -41,7 +42,7 @@ class RoomController {
     public String showAllRooms(final Model model) {
         model.addAttribute(ROOM_TYPES, roomService.findAllRoomTypes());
         model.addAttribute("photos", photoService.showAllPhotos());
-        return ROOMS;
+        return ROOMS_TEMPLATE;
     }
 
 
@@ -49,7 +50,7 @@ class RoomController {
     public String addRoomForm(final Model model) {
         model.addAttribute("roomWriteModel", new RoomWriteModel());
         model.addAttribute(ROOM_TYPES, roomService.findAllRoomTypes());
-        return "addRoom";
+        return "adminPanel/addRoom";
     }
 
     @PostMapping("/panel/admin/addRoom")
@@ -60,14 +61,14 @@ class RoomController {
             return addRoomForm(model);
         }
         roomService.createNewRoom(roomWriteModel);
-        return "addRoom";
+        return "adminPanel/addRoom";
     }
 
 
     @GetMapping("/panel/admin/editRooms")
     public String editRooms(final Model model) {
         model.addAttribute(ROOMS, roomService.findAllRooms());
-        return "editRooms";
+        return "adminPanel/editRooms";
     }
 
     @PostMapping("panel/admin/deleteRoom")
@@ -81,7 +82,7 @@ class RoomController {
     public String changeRoomPriceForm(final Model model) {
         model.addAttribute("changePriceDto", new ChangePriceDto());
         model.addAttribute(ROOM_TYPES, roomService.findAllRoomTypes());
-        return "changeRoomPrice";
+        return "adminPanel/changeRoomPrice";
     }
 
     @PostMapping("/panel/admin/changeRoomPrice")
@@ -92,7 +93,7 @@ class RoomController {
             return changeRoomPriceForm(model);
         }
         roomService.updateRoomTypePrice(changePriceDto);
-        return "changeRoomPrice";
+        return "adminPanel/changeRoomPrice";
     }
 
     @GetMapping("panel/admin/blockRoom")
@@ -100,7 +101,7 @@ class RoomController {
         model.addAttribute("blockRoomDto", new BlockRoomDto());
         model.addAttribute(ROOMS, roomService.findAllRooms());
         model.addAttribute("ranges", bookedDayService.getBlockedDaysForAllRooms());
-        return "blockRoom";
+        return "adminPanel/blockRoom";
     }
 
     @PostMapping("/panel/admin/blockRoom")

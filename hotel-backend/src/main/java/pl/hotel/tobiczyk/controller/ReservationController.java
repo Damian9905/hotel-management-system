@@ -33,7 +33,7 @@ class ReservationController {
     @GetMapping("/search")
     public String getSearchPage(final Model model) {
         model.addAttribute("searchDto", new SearchDto());
-        return "search";
+        return "staticContent/search";
     }
     @PostMapping("/search")
     public String getSearchResults(@ModelAttribute @Valid final SearchDto searchDto,
@@ -63,7 +63,7 @@ class ReservationController {
         model.addAttribute("paymentMethods", PaymentMethod.values());
         model.addAttribute("reservation", new ReservationWriteView());
         model.addAttribute("oidcUser", user);
-        return "newReservation";
+        return "reservation/newReservation";
     }
 
     @PostMapping("reserve")
@@ -77,6 +77,12 @@ class ReservationController {
     @GetMapping("/panel/admin/reservations")
     public String showAllReservations(Model model) {
         model.addAttribute("reservations", reservationService.getAllReservations());
-        return "reservations";
+        return "adminPanel/reservations";
+    }
+
+    @PostMapping("/panel/user/cancelReservation")
+    public String deletePhoto(@RequestParam("reservationId") final Long id) {
+        reservationService.cancelReservation(id);
+        return "redirect:/panel/user/userReservations";
     }
 }

@@ -31,7 +31,9 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="/panel/user">Konto</a>
-                                <a class="dropdown-item" href="/logout">Wyloguj</a>
+                                <form method="post" action="/logout">
+                                <button id="logout-button" class="dropdown-item" type="submit">Wyloguj</button>
+                                </form>
                             </div>
                         </div></li>
                     </ul>

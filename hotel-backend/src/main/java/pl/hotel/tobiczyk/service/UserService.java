@@ -3,6 +3,7 @@ package pl.hotel.tobiczyk.service;
 import com.okta.sdk.authc.credentials.TokenClientCredentials;
 import com.okta.sdk.client.Clients;
 import org.openapitools.client.ApiClient;
+import org.openapitools.client.api.SessionApi;
 import org.openapitools.client.api.UserApi;
 import org.openapitools.client.model.*;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
   private UserApi userApi;
+  private SessionApi sessionApi;
   private ApiClient client;
 
   public UserService() {
@@ -22,6 +24,7 @@ public class UserService {
         .setOrgUrl("https://dev-87163480.okta.com")
         .setClientCredentials(new TokenClientCredentials("00OR6GEzZXqnSpKKclQ1er1PmIsMnrlmWGXD5N5fK2"))
         .build();
+    sessionApi = new SessionApi(client);
     userApi = new UserApi(client);
   }
 

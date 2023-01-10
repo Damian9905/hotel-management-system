@@ -24,4 +24,8 @@ public class PaymentService {
   public Payment save(final Payment payment) {
     return paymentRepository.save(payment);
   }
+
+  public void cancelPayment(Long id) {
+    paymentRepository.deleteById(id);
+  }
 }

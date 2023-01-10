@@ -18,12 +18,12 @@ public class AdminPanelController {
 
     @GetMapping
     public String showAdminPanel(@AuthenticationPrincipal OidcUser oidcUser) {
-        return "adminPanel";
+        return "adminPanel/adminPanel";
     }
 
     @GetMapping("/users")
     public String getUsers(final Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "users";
+        return "adminPanel/users";
     }
 }

@@ -31,7 +31,7 @@ public class PhotoController {
         model.addAttribute("photo", new Photo());
         model.addAttribute("id", new RoomType().getId());
         model.addAttribute("roomTypes", roomService.findAllRoomTypes());
-        return "uploadPhoto";
+        return "adminPanel/uploadPhoto";
     }
 
     @PostMapping("panel/admin/uploadPhoto")
@@ -45,7 +45,7 @@ public class PhotoController {
     @GetMapping("panel/admin/editPhotos")
     public String showPhotos(final Model model){
         model.addAttribute("photos", photoService.showAllPhotos());
-        return "editPhotos";
+        return "adminPanel/editPhotos";
     }
 
     @PostMapping("panel/admin/deletePhoto")
