@@ -1,5 +1,8 @@
 server:
   port: 8080
+
+admin:
+  name: "00u7v6haujwS4Thyq5d7"
 spring:
   servlet:
     multipart:
