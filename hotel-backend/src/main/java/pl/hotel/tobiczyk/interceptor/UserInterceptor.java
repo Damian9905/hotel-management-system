@@ -1,6 +1,5 @@
 package pl.hotel.tobiczyk.interceptor;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -8,8 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UserInterceptor extends HandlerInterceptorAdapter {
-  @Value("${admin.name}")
-  private static String ADMIN_NAME;
+  private static String ADMIN_NAME = "00u7v6haujwS4Thyq5d7";
   private static final String ADMIN_PANEL_URL = "panel/admin";
 
   @Override
