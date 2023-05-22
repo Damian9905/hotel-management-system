@@ -1,9 +1,9 @@
-package pl.hotel.tobiczyk.validation;
+package pl.hotel.tobiczyk.core.validation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.web.multipart.MultipartFile;
-import pl.hotel.tobiczyk.domain.exception.EmptyPhotoException;
-import pl.hotel.tobiczyk.domain.exception.UnsupportedFileTypeException;
+import pl.hotel.tobiczyk.core.exception.EmptyPhotoException;
+import pl.hotel.tobiczyk.core.exception.UnsupportedFileTypeException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;

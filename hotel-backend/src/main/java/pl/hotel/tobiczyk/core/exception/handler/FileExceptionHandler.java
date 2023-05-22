@@ -1,20 +1,20 @@
-package pl.hotel.tobiczyk.controller.advice;
+package pl.hotel.tobiczyk.core.exception.handler;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
-import pl.hotel.tobiczyk.domain.constants.TemplateConstants;
-import pl.hotel.tobiczyk.domain.exception.EmptyPhotoException;
-import pl.hotel.tobiczyk.domain.exception.PhotoException;
-import pl.hotel.tobiczyk.domain.exception.UnsupportedFileTypeException;
+import pl.hotel.tobiczyk.common.constants.TemplateConstants;
+import pl.hotel.tobiczyk.core.exception.EmptyPhotoException;
+import pl.hotel.tobiczyk.core.exception.PhotoException;
+import pl.hotel.tobiczyk.core.exception.UnsupportedFileTypeException;
 import pl.hotel.tobiczyk.service.RoomService;
 
 @ControllerAdvice
-public class FileExceptionsControllerAdvice {
+public class FileExceptionHandler {
     private RoomService roomService;
 
-    public FileExceptionsControllerAdvice(final RoomService roomService) {
+    public FileExceptionHandler(final RoomService roomService) {
         this.roomService = roomService;
     }
 

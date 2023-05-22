@@ -1,4 +1,4 @@
-package pl.hotel.tobiczyk.configuration;
+package pl.hotel.tobiczyk.common.aws;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

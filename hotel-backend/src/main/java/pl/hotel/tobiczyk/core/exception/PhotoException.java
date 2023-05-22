@@ -1,4 +1,4 @@
-package pl.hotel.tobiczyk.domain.exception;
+package pl.hotel.tobiczyk.core.exception;
 
 import lombok.Getter;
 

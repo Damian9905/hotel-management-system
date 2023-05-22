@@ -1,4 +1,4 @@
-package pl.hotel.tobiczyk.interceptor;
+package pl.hotel.tobiczyk.core.interceptor;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

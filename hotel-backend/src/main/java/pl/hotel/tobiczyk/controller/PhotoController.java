@@ -8,7 +8,7 @@ import pl.hotel.tobiczyk.domain.model.Photo;
 import pl.hotel.tobiczyk.domain.model.RoomType;
 import pl.hotel.tobiczyk.service.PhotoService;
 import pl.hotel.tobiczyk.service.RoomService;
-import pl.hotel.tobiczyk.validation.PhotoValidator;
+import pl.hotel.tobiczyk.core.validation.PhotoValidator;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package pl.hotel.tobiczyk.domain.constants;
+package pl.hotel.tobiczyk.common.constants;
 
 public class TemplateConstants {
   public static final String BLOCK_ROOM_TEMPLATE = "adminPanel/blockRoom";

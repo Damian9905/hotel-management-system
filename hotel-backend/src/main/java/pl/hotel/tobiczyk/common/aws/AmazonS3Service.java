@@ -1,4 +1,4 @@
-package pl.hotel.tobiczyk.service;
+package pl.hotel.tobiczyk.common.aws;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;

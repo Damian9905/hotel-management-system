@@ -1,10 +1,10 @@
-package pl.hotel.tobiczyk.controller.advice;
+package pl.hotel.tobiczyk.core.exception.handler;
 
 import com.okta.sdk.error.ResourceException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import pl.hotel.tobiczyk.domain.constants.TemplateConstants;
+import pl.hotel.tobiczyk.common.constants.TemplateConstants;
 
 @ControllerAdvice
 public class OktaExceptionHandler {

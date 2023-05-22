@@ -1,25 +1,25 @@
-package pl.hotel.tobiczyk.controller.advice;
+package pl.hotel.tobiczyk.core.exception.handler;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import pl.hotel.tobiczyk.domain.constants.TemplateConstants;
+import pl.hotel.tobiczyk.common.constants.TemplateConstants;
 import pl.hotel.tobiczyk.domain.dto.BlockRoomDto;
 import pl.hotel.tobiczyk.domain.dto.SearchDto;
-import pl.hotel.tobiczyk.domain.exception.DateException;
-import pl.hotel.tobiczyk.domain.exception.DayAlreadyBookedException;
-import pl.hotel.tobiczyk.domain.exception.InvalidDateRangeException;
+import pl.hotel.tobiczyk.core.exception.DateException;
+import pl.hotel.tobiczyk.core.exception.DayAlreadyBookedException;
+import pl.hotel.tobiczyk.core.exception.InvalidDateRangeException;
 import pl.hotel.tobiczyk.service.BookedDayService;
 import pl.hotel.tobiczyk.service.RoomService;
 
 import java.time.DateTimeException;
 
 @ControllerAdvice
-public class DatesControllerAdvice {
+public class LocalDateExceptionHandler {
   private RoomService roomService;
   private BookedDayService bookedDayService;
 
-  public DatesControllerAdvice(final RoomService roomService, final BookedDayService bookedDayService) {
+  public LocalDateExceptionHandler(final RoomService roomService, final BookedDayService bookedDayService) {
     this.roomService = roomService;
     this.bookedDayService = bookedDayService;
   }

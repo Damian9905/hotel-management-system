@@ -1,14 +1,13 @@
 package pl.hotel.tobiczyk.service;
 
 import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
-import pl.hotel.tobiczyk.domain.constants.TemplateConstants;
+import pl.hotel.tobiczyk.common.constants.TemplateConstants;
 import pl.hotel.tobiczyk.domain.dto.BlockRoomDto;
 import pl.hotel.tobiczyk.domain.dto.RoomReadModel;
-import pl.hotel.tobiczyk.domain.exception.DayAlreadyBookedException;
-import pl.hotel.tobiczyk.domain.exception.InvalidDateRangeException;
+import pl.hotel.tobiczyk.core.exception.DayAlreadyBookedException;
+import pl.hotel.tobiczyk.core.exception.InvalidDateRangeException;
 import pl.hotel.tobiczyk.domain.model.BookedDay;
 import pl.hotel.tobiczyk.repository.BookedDayRepository;
 

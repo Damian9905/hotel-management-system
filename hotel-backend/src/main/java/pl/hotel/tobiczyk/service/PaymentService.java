@@ -25,6 +25,8 @@ public class PaymentService {
     return paymentRepository.save(payment);
   }
 
+  //TODO
+  //fix this, cause id is not equal reservation id, db schema to fix!
   public void cancelPayment(Long id) {
     paymentRepository.deleteById(id);
   }

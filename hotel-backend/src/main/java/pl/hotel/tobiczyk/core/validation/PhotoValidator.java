@@ -1,11 +1,11 @@
-package pl.hotel.tobiczyk.validation;
+package pl.hotel.tobiczyk.core.validation;
 
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import pl.hotel.tobiczyk.domain.constants.TemplateConstants;
-import pl.hotel.tobiczyk.domain.exception.EmptyPhotoException;
-import pl.hotel.tobiczyk.domain.exception.UnsupportedFileTypeException;
+import pl.hotel.tobiczyk.common.constants.TemplateConstants;
+import pl.hotel.tobiczyk.core.exception.EmptyPhotoException;
+import pl.hotel.tobiczyk.core.exception.UnsupportedFileTypeException;
 
 import java.util.List;
 
