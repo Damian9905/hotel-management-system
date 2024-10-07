@@ -1,5 +1,6 @@
 package pl.hotel.tobiczyk.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
@@ -19,16 +20,11 @@ import pl.hotel.tobiczyk.service.UserService;
 import javax.validation.Valid;
 
 @Controller
+@RequiredArgsConstructor
 class ReservationController {
-    private BookedDayService bookedDaysService;
-    private ReservationService reservationService;
-    private UserService userService;
-
-    public ReservationController(final BookedDayService bookedDaysService, final ReservationService reservationService, UserService userService) {
-        this.bookedDaysService = bookedDaysService;
-        this.reservationService = reservationService;
-        this.userService = userService;
-    }
+    private final BookedDayService bookedDaysService;
+    private final ReservationService reservationService;
+    private final UserService userService;
 
     @GetMapping("/search")
     public String getSearchPage(final Model model) {

@@ -4,9 +4,10 @@ import lombok.Getter;
 
 @Getter
 public abstract class PhotoException extends IllegalArgumentException {
-  public String template;
+  final String template;
 
-  public PhotoException (String message) {
+  protected PhotoException (String message, String template) {
     super(message);
+    this.template = template;
   }
 }

@@ -1,5 +1,6 @@
 package pl.hotel.tobiczyk.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.hotel.tobiczyk.domain.dto.ChangePriceDto;
 import pl.hotel.tobiczyk.domain.dto.RoomWriteModel;
@@ -13,14 +14,10 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class RoomService {
-    private RoomRepository roomRepository;
-    private RoomTypeRepository roomTypeRepository;
-
-    public RoomService(final RoomRepository repo, RoomTypeRepository roomTypeRepository){
-        this.roomRepository = repo;
-        this.roomTypeRepository = roomTypeRepository;
-    }
+    private final RoomRepository roomRepository;
+    private final RoomTypeRepository roomTypeRepository;
 
     public List<Room> findAllRooms() {
         return roomRepository.findAll();
@@ -40,9 +37,9 @@ public class RoomService {
 
     public Room createNewRoom(RoomWriteModel toCreate) {
         Room entity = Room.builder()
-                .description(toCreate.getDescription())
-                .name(toCreate.getName())
-                .roomType(roomTypeRepository.findById(toCreate.getRoomTypeId()).orElseThrow(NoSuchElementException::new))
+                .description(toCreate.description())
+                .name(toCreate.name())
+                .roomType(roomTypeRepository.findById(toCreate.roomTypeId()).orElseThrow(NoSuchElementException::new))
                 .build();
         return roomRepository.save(entity);
     }
@@ -52,8 +49,7 @@ public class RoomService {
     }
 
     public void updateRoomTypePrice(final ChangePriceDto roomToChange) {
-        var room = roomTypeRepository.findById(roomToChange.getId()).orElseThrow(NoSuchElementException::new);
-        room.setPrice(Optional.ofNullable(roomToChange.getPrice().doubleValue()).orElse(room.getPrice()));
-        roomTypeRepository.save(room);
+        RoomType room = roomTypeRepository.findById(roomToChange.id()).orElseThrow(NoSuchElementException::new);
+        roomTypeRepository.save(room.withPrice(Optional.of(roomToChange.price().doubleValue()).orElse(room.price())));
     }
 }

@@ -1,5 +1,6 @@
 package pl.hotel.tobiczyk.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Service;
 import pl.hotel.tobiczyk.domain.dto.BlockRoomDto;
@@ -19,20 +20,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
+@RequiredArgsConstructor
 public class ReservationService {
-  private ReservationRepository reservationRepository;
-  private BookedDayService bookedDayService;
-  private PaymentService paymentService;
-  private RoomService roomService;
-  private UserService userService;
-
-  public ReservationService(ReservationRepository reservationRepository, BookedDayService bookedDayService, PaymentService paymentService, RoomService roomService, UserService userService) {
-    this.reservationRepository = reservationRepository;
-    this.bookedDayService = bookedDayService;
-    this.paymentService = paymentService;
-    this.roomService = roomService;
-    this.userService = userService;
-  }
+  private final ReservationRepository reservationRepository;
+  private final BookedDayService bookedDayService;
+  private final PaymentService paymentService;
+  private final RoomService roomService;
+  private final UserService userService;
 
   public List<ReservationReadView> getAllReservations() {
     return mapToReservationReadView(reservationRepository.findAll().stream());
@@ -45,17 +39,17 @@ public class ReservationService {
   private List<ReservationReadView> mapToReservationReadView(Stream<Reservation> reservations) {
     return reservations
         .map(reservation -> ReservationReadView.builder()
-            .id(reservation.getId())
-            .roomName(reservation.getRoom().getName())
-            .customerFirstName(userService.getUserProfile(reservation.getCustomerId()).getFirstName())
-            .customerLastName(userService.getUserProfile(reservation.getCustomerId()).getLastName())
-            .totalValue(reservation.getTotalValue())
-            .paymentMethod(reservation.getPayment().getPaymentMethod())
-            .dateFrom(reservation.getDateFrom())
-            .dateTo(reservation.getDateTo())
-            .numberOfPeople(reservation.getRoom().getRoomType().getNumberOfPeople())
+            .id(reservation.id())
+            .roomName(reservation.room().name())
+            .customerFirstName(userService.getUserProfile(reservation.customerId()).getFirstName())
+            .customerLastName(userService.getUserProfile(reservation.customerId()).getLastName())
+            .totalValue(reservation.totalValue())
+            .paymentMethod(reservation.payment().paymentMethod())
+            .dateFrom(reservation.dateFrom())
+            .dateTo(reservation.dateTo())
+            .numberOfPeople(reservation.room().roomType().numberOfPeople())
             .build())
-        .sorted((a,b) -> a.getDateFrom().isBefore(b.getDateFrom()) ? 1 : -1)
+        .sorted((a,b) -> a.dateFrom().isBefore(b.dateFrom()) ? 1 : -1)
         .collect(Collectors.toList());
   }
 
@@ -63,12 +57,12 @@ public class ReservationService {
                                                       final String dateTo, final String totalValue) {
     return ReservationWriteView.builder()
         .roomId(roomId)
-        .roomName(roomService.findRoomById(roomId).map(Room::getRoomType)
-            .map(RoomType::getDescription).orElseThrow(NoSuchElementException::new))
+        .roomName(roomService.findRoomById(roomId).map(Room::roomType)
+            .map(RoomType::description).orElseThrow(NoSuchElementException::new))
         .dateFrom(dateFrom)
         .dateTo(dateTo)
-        .numberOfPeople(roomService.findRoomById(roomId).map(Room::getRoomType)
-            .map(RoomType::getNumberOfPeople).orElseThrow(NoSuchElementException::new))
+        .numberOfPeople(roomService.findRoomById(roomId).map(Room::roomType)
+            .map(RoomType::numberOfPeople).orElseThrow(NoSuchElementException::new))
         .totalValue(totalValue)
         .build();
   }
@@ -78,16 +72,15 @@ public class ReservationService {
     Reservation reservation = Reservation.builder()
         .customerId(user.getName())
         .room(roomService.findRoomById(Long.valueOf(roomId)).orElseThrow(NoSuchElementException::new))
-        .dateFrom(LocalDate.parse(reservationWriteView.getDateFrom()))
-        .dateTo(LocalDate.parse(reservationWriteView.getDateTo()))
-        .totalValue(Double.valueOf(reservationWriteView.getTotalValue()))
+        .dateFrom(LocalDate.parse(reservationWriteView.dateFrom()))
+        .dateTo(LocalDate.parse(reservationWriteView.dateTo()))
+        .totalValue(Double.valueOf(reservationWriteView.totalValue()))
         .build();
-    Payment payment = paymentService.createPayment(reservationWriteView.getPaymentMethod());
-    reservation.setPayment(payment);
+    Payment payment = paymentService.createPayment(reservationWriteView.paymentMethod());
     reservationRepository.save(reservation);
     paymentService.save(payment);
     bookedDayService.blockRoom(new BlockRoomDto(
-        Long.valueOf(roomId), LocalDate.parse(reservationWriteView.getDateFrom()), LocalDate.parse(reservationWriteView.getDateTo())
+        Long.valueOf(roomId), LocalDate.parse(reservationWriteView.dateFrom()), LocalDate.parse(reservationWriteView.dateTo())
     ));
     return reservation;
   }

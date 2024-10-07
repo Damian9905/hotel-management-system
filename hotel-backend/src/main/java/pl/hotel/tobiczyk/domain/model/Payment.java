@@ -8,18 +8,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "payments")
-@Getter
-@Setter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Payment {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  private String paymentMethod;
-  private String paymentStatus;
-  @OneToOne(mappedBy = "payment")
-  private Reservation reservation;
+public record Payment(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id,
+    String paymentMethod,
+    String paymentStatus,
+    @OneToOne(mappedBy = "payment")
+    Reservation reservation
+) {
+
 }

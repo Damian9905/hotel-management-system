@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Long> {
-
     @Query(value = "select distinct r from Room r order by r.id asc")
     List<Room> findAll();
 

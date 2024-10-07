@@ -7,20 +7,15 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "booked_days")
-@Getter
-@Setter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class BookedDay {
+public record BookedDay(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    Long id,
     @Column(name = "booked_day")
-    private LocalDate bookedDay;
-
+    LocalDate bookedDay,
     @ManyToOne(targetEntity = Room.class)
     @JoinColumn(name = "room_id", nullable = false)
-    private Room room;
+    Room room
+) {
 }

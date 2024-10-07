@@ -1,6 +1,7 @@
 package pl.hotel.tobiczyk.service;
 
 import com.amazonaws.services.glue.model.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class PhotoService {
 
     private static final Logger logger = LoggerFactory.getLogger(PhotoService.class);
@@ -21,15 +23,8 @@ public class PhotoService {
     private final AmazonS3Service amazonS3Service;
     private final PhotoRepository photoRepository;
     private final RoomService roomService;
-
     @Value("${aws.s3.bucket.name}")
-    private String bucketName;
-
-    public PhotoService(final AmazonS3Service amazonS3Service, final PhotoRepository photoRepository, RoomService roomService) {
-        this.amazonS3Service = amazonS3Service;
-        this.photoRepository = photoRepository;
-        this.roomService = roomService;
-    }
+    private final String bucketName;
 
     public void upload(MultipartFile file, final Long roomTypeId) throws IOException {
         Map<String, String> metadata = new HashMap<>();
@@ -62,8 +57,8 @@ public class PhotoService {
                 .orElseThrow(() -> new EntityNotFoundException("No photo with that id!"));
         photoRepository.deleteById(id);
 
-        String key = photo.getRoomType().getId() + "/" + photo.getFileName();
+        String key = photo.roomType().id() + "/" + photo.fileName();
         amazonS3Service.deleteFromS3(bucketName, key);
-        logger.info("Photo with key: %s has been deleted from AmazonS3", key);
+        logger.info(String.format("Photo with key: %s has been deleted from AmazonS3", key));
     }
 }

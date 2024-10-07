@@ -1,5 +1,6 @@
 package pl.hotel.tobiczyk.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,20 +14,14 @@ import pl.hotel.tobiczyk.core.validation.PhotoValidator;
 import java.io.IOException;
 
 @Controller
+@RequestMapping(path="/panel/admin/photos")
+@RequiredArgsConstructor
 public class PhotoController {
+    private final RoomService roomService;
+    private final PhotoService photoService;
+    private final PhotoValidator validator;
 
-    private RoomService roomService;
-    private PhotoService photoService;
-    private PhotoValidator validator;
-
-    public PhotoController(final RoomService roomService, final PhotoService photoService,
-                           final PhotoValidator validator) {
-        this.roomService = roomService;
-        this.photoService = photoService;
-        this.validator = validator;
-    }
-
-    @GetMapping("panel/admin/uploadPhoto")
+    @GetMapping("/uploadPhoto")
     public String uploadPhotoForm(final Model model) {
         model.addAttribute("photo", new Photo());
         model.addAttribute("id", new RoomType().getId());
@@ -34,7 +29,7 @@ public class PhotoController {
         return "adminPanel/uploadPhoto";
     }
 
-    @PostMapping("panel/admin/uploadPhoto")
+    @PostMapping("/uploadPhoto")
     public String uploadPhoto(@RequestParam("id") final Long id, @RequestParam("file") final MultipartFile file,
                               final Model model) throws IOException {
         validator.validate(file);
@@ -42,13 +37,13 @@ public class PhotoController {
         return uploadPhotoForm(model);
     }
 
-    @GetMapping("panel/admin/editPhotos")
+    @GetMapping("/editPhotos")
     public String showPhotos(final Model model){
         model.addAttribute("photos", photoService.showAllPhotos());
         return "adminPanel/editPhotos";
     }
 
-    @PostMapping("panel/admin/deletePhoto")
+    @PostMapping("/deletePhoto")
     public String deletePhoto(@RequestParam("photoId") final Long id) {
         photoService.deletePhoto(id);
         return "redirect:/panel/admin/editPhotos";

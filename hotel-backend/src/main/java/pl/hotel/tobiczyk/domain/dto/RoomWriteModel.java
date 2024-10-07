@@ -1,16 +1,14 @@
 package pl.hotel.tobiczyk.domain.dto;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Data
-public class RoomWriteModel {
+public record RoomWriteModel(
     @NotBlank(message = "Name must not be blank!")
-    private String name;
+    String name,
     @NotBlank(message = "Description must not be blank!")
-    private String description;
+    String description,
     @NotNull(message = "You must choose room type!")
-    private Long roomTypeId;
+    Long roomTypeId
+) {
 }

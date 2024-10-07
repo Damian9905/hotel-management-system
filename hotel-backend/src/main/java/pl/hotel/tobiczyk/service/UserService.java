@@ -2,6 +2,7 @@ package pl.hotel.tobiczyk.service;
 
 import com.okta.sdk.authc.credentials.TokenClientCredentials;
 import com.okta.sdk.client.Clients;
+import lombok.RequiredArgsConstructor;
 import org.openapitools.client.ApiClient;
 import org.openapitools.client.api.SessionApi;
 import org.openapitools.client.api.UserApi;
@@ -11,13 +12,15 @@ import org.springframework.stereotype.Service;
 import pl.hotel.tobiczyk.domain.dto.UserDto;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-  private UserApi userApi;
-  private SessionApi sessionApi;
-  private ApiClient client;
+  private final UserApi userApi;
+  private final SessionApi sessionApi;
+  private final ApiClient client;
 
   public UserService() {
     client = Clients.builder()
@@ -35,7 +38,7 @@ public class UserService {
   public List<UserDto> getAllUsers() {
     return userApi.listUsers(null, null, 50, null, null, null, null)
         .stream().map(user -> UserDto.builder()
-            .name(user.getProfile().getFirstName())
+            .name(Objects.requireNonNull(user.getProfile()).getFirstName())
             .lastName(user.getProfile().getLastName())
             .email(user.getProfile().getEmail())
             .build())

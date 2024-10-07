@@ -1,5 +1,6 @@
 package pl.hotel.tobiczyk.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
@@ -10,14 +11,10 @@ import pl.hotel.tobiczyk.service.UserService;
 
 @Controller
 @RequestMapping(path="/panel/user")
+@RequiredArgsConstructor
 public class UserPanelController {
-  private ReservationService reservationService;
-  private UserService userService;
-
-  public UserPanelController(ReservationService reservationService, UserService userService) {
-    this.reservationService = reservationService;
-    this.userService = userService;
-  }
+  private final ReservationService reservationService;
+  private final UserService userService;
 
   @GetMapping()
   public String getUserPanel(@AuthenticationPrincipal OidcUser oidcUser, Model model) {

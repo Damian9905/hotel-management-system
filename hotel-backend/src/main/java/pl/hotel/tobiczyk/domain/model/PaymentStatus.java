@@ -1,5 +1,8 @@
 package pl.hotel.tobiczyk.domain.model;
 
+import lombok.Getter;
+
+@Getter
 public enum PaymentStatus {
   COMPLETED("Opłacona"),
   UNCOMPLETED("Nieopłacona");
@@ -8,9 +11,5 @@ public enum PaymentStatus {
 
   PaymentStatus(final String value) {
     this.value = value;
-  }
-
-  public String getValue() {
-    return this.value;
   }
 }

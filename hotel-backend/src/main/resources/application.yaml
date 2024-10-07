@@ -9,8 +9,8 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/hotelDB
-    username: postgres
-    password: Szajba1
+    username:
+    password:
     hikari:
       maximum-pool-size: 5
       connection-timeout: 20000
@@ -23,11 +23,11 @@ spring:
 
 okta:
   oauth2:
-    issuer: https://dev-87163480.okta.com/oauth2/default
-    clientId: 0oa6orr3gkY3MOoPX5d7
-    clientSecret: gXtAW-chOw0y_LZL5kzrscDby_vPl_UG_7BVwAag
-    audience: api://default
-    baseUrl: https://dev-87163480.okta.com
+    issuer:
+    clientId:
+    clientSecret:
+    audience:
+    baseUrl:
     rolesClaim: groups
     redirect-uri: /authorization-code/callback
     postLogoutRedirectUri: http://localhost:8080/
@@ -36,10 +36,10 @@ okta:
 aws:
   access:
     key:
-      id: AKIASLSRCJ4LILNP2LQB
+      id:
   secret:
     access:
-      key: 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
+      key:
   s3:
     region: eu-central-1
     bucket:

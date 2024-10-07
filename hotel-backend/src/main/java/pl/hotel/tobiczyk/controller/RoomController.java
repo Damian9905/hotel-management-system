@@ -1,5 +1,6 @@
 package pl.hotel.tobiczyk.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,22 +17,16 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 class RoomController {
     private static final String ROOM_TYPES = "roomTypes";
     private static final String ROOMS = "rooms";
     private static final String ROOMS_TEMPLATE = "staticContent/rooms";
     private static final String ERRORS = "errors";
 
-    private RoomService roomService;
-    private PhotoService photoService;
-    private BookedDayService bookedDayService;
-
-    public RoomController(final RoomService roomService, final PhotoService photoService,
-                          final BookedDayService bookedDayService) {
-        this.roomService = roomService;
-        this.photoService = photoService;
-        this.bookedDayService = bookedDayService;
-    }
+    private final RoomService roomService;
+    private final PhotoService photoService;
+    private final BookedDayService bookedDayService;
 
     @ModelAttribute("rooms")
     List<Room> readAllRooms() {

@@ -1,5 +1,6 @@
 package pl.hotel.tobiczyk.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
@@ -20,36 +21,32 @@ import java.util.stream.Collectors;
 
 @Service
 @Log
+@RequiredArgsConstructor
 public class BookedDayService {
-    private BookedDayRepository bookedDaysRepository;
-    private RoomService roomService;
-
-    public BookedDayService(BookedDayRepository bookedDaysRepository, RoomService roomService) {
-        this.bookedDaysRepository = bookedDaysRepository;
-        this.roomService = roomService;
-    }
+    private final BookedDayRepository bookedDaysRepository;
+    private final RoomService roomService;
 
     public List<BookedDay> findBookedDaysForRoom(final Long roomId) {
         return bookedDaysRepository.findAllByRoomId(roomId);
     }
 
     public void blockRoom(final BlockRoomDto blockRoomDto) {
-        if(blockRoomDto.getDateTo().isBefore(blockRoomDto.getDateFrom()))
+        if(blockRoomDto.dateTo().isBefore(blockRoomDto.dateFrom()))
             throw new InvalidDateRangeException(TemplateConstants.BLOCK_ROOM_TEMPLATE);
 
-        blockRoomDto.getDateFrom().datesUntil(blockRoomDto.getDateTo()).forEach(day ->
+        blockRoomDto.dateFrom().datesUntil(blockRoomDto.dateTo()).forEach(day ->
             {
                 try {
                     bookedDaysRepository.save(
                         BookedDay.builder()
                             .bookedDay(day)
-                            .room(roomService.findRoomById(blockRoomDto.getRoomId())
+                            .room(roomService.findRoomById(blockRoomDto.roomId())
                                 .orElseThrow(NoSuchElementException::new))
                             .build()
                     );
-                    log.info("Blocked day: " + day.toString() + "for room: " + blockRoomDto.getRoomId());
+                    log.info("Blocked day: " + day.toString() + "for room: " + blockRoomDto.roomId());
                 } catch(Exception ex) {
-                    log.warning("Day already blocked!: " + day.toString() + "for room: " + blockRoomDto.getRoomId());
+                    log.warning("Day already blocked!: " + day.toString() + "for room: " + blockRoomDto.roomId());
                     throw new DayAlreadyBookedException(TemplateConstants.BLOCK_ROOM_TEMPLATE);
                 }
             }
@@ -59,20 +56,20 @@ public class BookedDayService {
     List<Pair<LocalDate, LocalDate>> getBlockedRangesOfDaysForRoom(final Long roomId) {
         var listOfRanges = new ArrayList<Pair<LocalDate, LocalDate>>();
         var bookedDays = bookedDaysRepository.findAllByRoomId(roomId).stream()
-            .sorted((a,b) -> a.getBookedDay().isBefore(b.getBookedDay()) ? -1 : 1)
-            .collect(Collectors.toList());
+            .sorted((a,b) -> a.bookedDay().isBefore(b.bookedDay()) ? -1 : 1)
+            .toList();
         int start = 0;
         int end;
         for(int i = 1; i < bookedDays.size(); i++) {
-            if(!bookedDays.get(i-1).getBookedDay().plusDays(1L).equals(bookedDays.get(i).getBookedDay())){
+            if(!bookedDays.get(i-1).bookedDay().plusDays(1L).equals(bookedDays.get(i).bookedDay())){
                 end = i-1;
-                var range = Pair.of(bookedDays.get(start).getBookedDay(), bookedDays.get(end).getBookedDay().plusDays(1L));
+                var range = Pair.of(bookedDays.get(start).bookedDay(), bookedDays.get(end).bookedDay().plusDays(1L));
                 listOfRanges.add(range);
                 start = i;
             }
             if(i == bookedDays.size() -1) {
                 end = i;
-                var range = Pair.of(bookedDays.get(start).getBookedDay(), bookedDays.get(end).getBookedDay().plusDays(1L));
+                var range = Pair.of(bookedDays.get(start).bookedDay(), bookedDays.get(end).bookedDay().plusDays(1L));
                 listOfRanges.add(range);
             }
         }
@@ -82,7 +79,7 @@ public class BookedDayService {
 
     public List<List<Pair<LocalDate, LocalDate>>> getBlockedDaysForAllRooms() {
         return roomService.findAllRooms().stream()
-            .map(room -> getBlockedRangesOfDaysForRoom(room.getId())
+            .map(room -> getBlockedRangesOfDaysForRoom(room.id())
         ).collect(Collectors.toList());
     }
 
@@ -93,15 +90,15 @@ public class BookedDayService {
         final var days = retrieveDatesToCheck(dateFrom, dateTo);
         return roomService.findAllRooms().stream()
             .filter(room ->
-                room.getBookedDays()
-                    .stream().map(BookedDay::getBookedDay)
+                room.bookedDays()
+                    .stream().map(BookedDay::bookedDay)
                     .noneMatch(days::contains)
             ).map(RoomReadModel::fromRoom)
             .collect(Collectors.toList());
     }
 
     private List<LocalDate> retrieveDatesToCheck(final LocalDate dateFrom, final LocalDate dateTo) {
-        return dateFrom.datesUntil(dateTo, Period.ofDays(1)).collect(Collectors.toList());
+        return dateFrom.datesUntil(dateTo, Period.ofDays(1)).toList();
     }
 
     public Integer countNights(final LocalDate dateFrom, final LocalDate dateTo) {

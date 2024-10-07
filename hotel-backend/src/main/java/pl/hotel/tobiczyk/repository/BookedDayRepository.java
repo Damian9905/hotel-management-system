@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BookedDayRepository extends JpaRepository<BookedDay, Long> {
-
     List<BookedDay> findAllByRoomId(Long roomId);
 }
