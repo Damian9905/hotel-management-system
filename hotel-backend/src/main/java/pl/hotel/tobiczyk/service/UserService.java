@@ -4,9 +4,9 @@ import com.okta.sdk.authc.credentials.TokenClientCredentials;
 import com.okta.sdk.client.Clients;
 import lombok.RequiredArgsConstructor;
 import org.openapitools.client.ApiClient;
-import org.openapitools.client.api.SessionApi;
 import org.openapitools.client.api.UserApi;
 import org.openapitools.client.model.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Service;
 import pl.hotel.tobiczyk.domain.dto.UserDto;
@@ -18,16 +18,19 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+  @Value("${okta.oAuth2.orgUrl}")
+  private static String orgUrl;
+  @Value("${okta.oAuth2.clientCredentialsSecret}")
+  private static String clientCredentialsSecret;
+
   private final UserApi userApi;
-  private final SessionApi sessionApi;
   private final ApiClient client;
 
   public UserService() {
     client = Clients.builder()
-        .setOrgUrl("https://dev-87163480.okta.com")
-        .setClientCredentials(new TokenClientCredentials("00OR6GEzZXqnSpKKclQ1er1PmIsMnrlmWGXD5N5fK2"))
+        .setOrgUrl(orgUrl)
+        .setClientCredentials(new TokenClientCredentials(clientCredentialsSecret))
         .build();
-    sessionApi = new SessionApi(client);
     userApi = new UserApi(client);
   }
 

@@ -31,6 +31,8 @@ okta:
     rolesClaim: groups
     redirect-uri: /authorization-code/callback
     postLogoutRedirectUri: http://localhost:8080/
+    orgUrl:
+    clientCredentialsSecret:
 
 
 aws:
